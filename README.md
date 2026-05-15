@@ -14,6 +14,7 @@ Sergio Mondragon Silva
 
 
 **Font**
-- https://fonts.google.com/specimen/Open+Sans?query=open+sans
+1. Open Sans
+> https://fonts.google.com/specimen/Open+Sans?query=open+sans
 
 **Design**
