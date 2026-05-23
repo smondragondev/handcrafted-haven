@@ -1,0 +1,54 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    /* 🚀 Increased top/bottom padding to give the huge logo room to breathe */
+    background-color: #ffffff;
+    border-bottom: 2px solid #D2FFC4;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* src/app/layout.module.css */
+
+.logoImage {
+    height: 180px;
+    /* 🚀 Way bigger! Bumped up significantly from 75px */
+    width: 180px;
+    /* 🚀 Perfect square to ensure the crest doesn't warp */
+    object-fit: contain;
+    /* Keeps the circular emblem sharp and fully visible */
+    border-radius: 12px;
+    /* Smooths out the edges proportionally */
+    transition: transform 0.2s ease;
+}
+
+.logoImage:hover {
+    transform: scale(1.03);
+}
+
+.navLinks a {
+    color: #448061;
+    /* Using your team's dark green brand color from the README! */
+    margin-left: 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navLinks a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #448061;
+    /* Team brand color background */
+    color: #ffffff;
+    margin-top: auto;
+}
