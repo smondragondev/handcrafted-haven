@@ -30,6 +30,35 @@
   padding: 120px 60px;
 }
 
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories{
+  padding: 30px;
+  text-align: center;
+}
+
+.categories div{
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.features{
+  padding: 30px;
+  text-align: center;
+}
+
+.features div{
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
 .intro {
   display: flex;
   flex-direction: column;
@@ -124,9 +153,7 @@ a.secondary {
 }
 
 @media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
+
 
   .page {
     --background: #000;
