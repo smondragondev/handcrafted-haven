@@ -1,7 +1,7 @@
 # Handcrafted-haven
 
 ## Team Members
-- Glenn Danniel Mendoza Soriana
+- Glenn Danniel Mendoza Soriano
 - Marcellous Curtis
 - Thailis  Gonzalez
 - Sergio Mondragon Silva

@@ -1,11 +1,19 @@
+/* src/app/layout.module.css */
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
-    /* 🚀 Increased top/bottom padding to give the huge logo room to breathe */
-    background-color: #ffffff;
+    /* Preserving your vertical breathing room */
+    background-color: #FAF8F5;
+    /* Soft background from the wireframe */
     border-bottom: 2px solid #D2FFC4;
+    /* Keeping your light green accent line */
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-sizing: border-box;
 }
 
 .logoContainer {
@@ -14,17 +22,12 @@
     gap: 10px;
 }
 
-/* src/app/layout.module.css */
-
 .logoImage {
-    height: 180px;
-    /* 🚀 Way bigger! Bumped up significantly from 75px */
-    width: 180px;
-    /* 🚀 Perfect square to ensure the crest doesn't warp */
+    height: 60px;
+    /* Scaled to sit perfectly in line with text and icons */
+    width: 60px;
     object-fit: contain;
-    /* Keeps the circular emblem sharp and fully visible */
-    border-radius: 12px;
-    /* Smooths out the edges proportionally */
+    border-radius: 50%;
     transition: transform 0.2s ease;
 }
 
@@ -32,23 +35,62 @@
     transform: scale(1.03);
 }
 
+/* --- CENTER SECTION: NAVIGATION LINKS --- */
+.navLinks {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2.5rem;
+    /* Perfect, spacious gaps between middle links */
+}
+
 .navLinks a {
     color: #448061;
-    /* Using your team's dark green brand color from the README! */
-    margin-left: 1.5rem;
+    /* Keeping your team's beautiful dark green brand color */
     text-decoration: none;
     font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
 }
 
 .navLinks a:hover {
-    text-decoration: underline;
+    color: #1b4332;
+    /* Deepens cleanly on hover */
 }
 
+/* --- RIGHT SECTION: UTILITY ICONS --- */
+.navUtilities {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.iconBtn {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    color: #448061;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.iconBtn:hover {
+    color: #1b4332;
+    transform: scale(1.05);
+}
+
+/* --- FOOTER STYLES --- */
 .footer {
-    text-align: center;
-    padding: 1.5rem;
     background-color: #448061;
-    /* Team brand color background */
+    /* Matches the dark green color palette */
     color: #ffffff;
+    padding: 2rem 3rem;
+    text-align: center;
+    font-weight: 500;
     margin-top: auto;
 }
