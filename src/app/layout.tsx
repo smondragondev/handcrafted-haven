@@ -65,7 +65,7 @@ export default function RootLayout({
 
         {/* 🌟 THE FOOTER */}
         <footer className={styles.footer}>
-          <p>© {new Date().getFullYear()} Handcrafted Haven. Remote-Developers🇨🇦🇺🇸🇨🇱🇦🇷.</p>
+          <p>© {new Date().getFullYear()} Handcrafted Haven. Remote-Developers🇨🇦🇺🇸🇵🇪🇨🇱🇻🇪.</p>
         </footer>
 
       </body>
