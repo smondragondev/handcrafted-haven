@@ -5,8 +5,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
+    /* Preserving your vertical breathing room */
     background-color: #FAF8F5;
+    /* Soft background from the wireframe */
     border-bottom: 2px solid #D2FFC4;
+    /* Keeping your light green accent line */
     position: sticky;
     top: 0;
     z-index: 50;
@@ -20,11 +23,16 @@
 }
 
 .logoImage {
-    height: 50px;
-    /* Sized down slightly so it sits perfectly on mobile */
-    width: 50px;
+    height: 60px;
+    /* Scaled to sit perfectly in line with text and icons */
+    width: 60px;
     object-fit: contain;
     border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.logoImage:hover {
+    transform: scale(1.03);
 }
 
 /* --- CENTER SECTION: NAVIGATION LINKS --- */
@@ -35,13 +43,21 @@
     margin: 0;
     padding: 0;
     gap: 2.5rem;
+    /* Perfect, spacious gaps between middle links */
 }
 
 .navLinks a {
     color: #448061;
+    /* Keeping your team's beautiful dark green brand color */
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
+    transition: color 0.2s ease;
+}
+
+.navLinks a:hover {
+    color: #1b4332;
+    /* Deepens cleanly on hover */
 }
 
 /* --- RIGHT SECTION: UTILITY ICONS --- */
@@ -60,139 +76,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
-/* --- THE MOBILE RESPONSIVE MEDIA QUERY --- */
-@media (max-width: 768px) {
-
-    /* Tighten navbar padding so items don't get squished off screen */
-    .navbar {
-        padding: 1rem 1.5rem;
-    }
-
-    /* 🌟 FIX: Hide the text links entirely on mobile to make room for utility icons */
-    .navLinks {
-        display: none;
-    }
-
-    /* Keep your utilities neatly spaced out on the right */
-    .navUtilities {
-        gap: 1rem;
-    }
+.iconBtn:hover {
+    color: #1b4332;
+    transform: scale(1.05);
 }
 
-/* --- FOOTER --- */
+/* --- FOOTER STYLES --- */
 .footer {
     background-color: #448061;
+    /* Matches the dark green color palette */
     color: #ffffff;
     padding: 2rem 3rem;
     text-align: center;
     font-weight: 500;
     margin-top: auto;
-}
-
-/* Add this right at the bottom of your src/app/layout.module.css file */
-
-.hamburgerBtn {
-    display: none;
-    background: none;
-    border: none;
-    color: #448061;
-    cursor: pointer;
-    padding: 0.25rem;
-}
-
-/* src/app/layout.module.css */
-
-/* Keep all your top/desktop styles exactly the same. 
-   Just replace the mobile media query at the bottom with this: */
-
-/* src/app/layout.module.css */
-
-/* Keep all your top/desktop styles exactly the same.
-   Just replace the entire @media block at the bottom with this: */
-
-/* src/app/layout.module.css */
-
-/* Keep all your desktop styles exactly the same.
-   Just swap out the bottom @media block with this completely fixed system: */
-
-@media (max-width: 768px) {
-    .navbar {
-        padding: 1rem 1.5rem;
-        position: relative;
-        /* 🌟 Acts as the true anchor for all absolute positions */
-        display: flex;
-        justify-content: center;
-        /* 🌟 Forces the logo to lock dead-center */
-        align-items: center;
-        min-height: 70px;
-    }
-
-    /* 🌟 Force the Hamburger Menu Button to the true absolute left corner */
-    .hamburgerBtn {
-        display: flex;
-        align-items: center;
-        position: absolute !important;
-        left: 1.5rem !important;
-        /* Anchors it cleanly to the left edge */
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-    }
-
-    /* 🌟 Center Logo Container */
-    .logoContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-    }
-
-    /* 🌟 UNLOCK THE PARENT: Allow items inside to break out relative to the navbar */
-    .navUtilities {
-        display: contents;
-    }
-
-    /* 🌟 Target the individual icon buttons to position the utilities group on the right */
-    .navUtilities .iconBtn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-    }
-
-    /* Cart Icon (First button inside utilities) -> Corner Right */
-    .navUtilities button:nth-of-type(1) {
-        right: 4rem;
-        /* Safe horizontal gap from the user icon */
-    }
-
-    /* User/Profile Icon (Second button inside utilities) -> Far Corner Right */
-    .navUtilities button:nth-of-type(2) {
-        right: 1.5rem;
-        /* Anchors it cleanly to the far right edge */
-    }
-
-    /* Hide the text links on mobile */
-    .navLinks {
-        display: none;
-    }
-
-    /* Dropdown panel when the mobile hamburger is clicked active */
-    .navLinks.mobileVisible {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #FAF8F5;
-        border-bottom: 2px solid #D2FFC4;
-        padding: 1.5rem 0;
-        gap: 1.5rem;
-        text-align: center;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        z-index: 99;
-    }
 }
