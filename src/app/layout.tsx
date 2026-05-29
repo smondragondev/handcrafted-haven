@@ -1,6 +1,14 @@
 // src/app/layout.tsx
+import type { Metadata } from "next";
 import './globals.css';
 import styles from './layout.module.css'; //  Importing your CSS module
+import { openSans } from "./ui/fonts";
+
+
+export const metadata: Metadata = {
+  title: "Handcrafted haven app",
+  description: "",
+};
 
 export default function RootLayout({
   children,
@@ -9,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
+      <body className={`${openSans.className}`} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
         
         {/* 🌟 THE NAVIGATION BAR */}
         <nav className={styles.navbar}>
