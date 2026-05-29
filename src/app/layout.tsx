@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
 import './globals.css';
-import styles from './layout.module.css'; //  Importing your CSS module
+import styles from './layout.module.css'; // Importing your CSS module
 import { openSans } from "./ui/fonts";
 
 
@@ -22,7 +22,14 @@ export default function RootLayout({
         {/* 🌟 THE NAVIGATION BAR */}
         <nav className={styles.navbar}>
           
-          {/* Left: Brand Crest & Title */}
+          {/* 🍔 Left Corner: Mobile Hamburger Button Menu */}
+          <button className={styles.hamburgerBtn} aria-label="Open Navigation Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '28px', height: '28px' }}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+
+          {/* Center: Brand Crest & Title */}
           <div className={styles.logoContainer}>
             <img 
               src="/handcrafted.jpg" // Using your exact asset path from the file tree!
@@ -31,7 +38,7 @@ export default function RootLayout({
             />
           </div>
 
-          {/* Middle: Centered Navigation Links */}
+          {/* Middle: Centered Navigation Links (Hidden automatically on Mobile) */}
           <ul className={styles.navLinks}>
             <li><a href="/">Home</a></li>
             <li><a href="/products">Products</a></li>
