@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import './globals.css';
 import styles from './layout.module.css'; //  Importing your CSS module
 import { openSans } from "./ui/fonts";
+import Link from "next/link";
+import pageStyles from './page.module.css'
 
 
 export const metadata: Metadata = {
@@ -34,7 +36,7 @@ export default function RootLayout({
           {/* Middle: Centered Navigation Links */}
           <ul className={styles.navLinks}>
             <li><a href="/">Home</a></li>
-            <li><a href="/products">Products</a></li>
+            <li><Link href="/products">Products</Link></li>
             <li><a href="/categories">Categories</a></li>
             <li><a href="/about">About Us</a></li>
           </ul>
@@ -59,7 +61,7 @@ export default function RootLayout({
         </nav>
 
         {/* 🌟 APP CORE CONTENT */}
-        <main style={{ flex: 1 }}>
+        <main className={pageStyles.main}>
           {children}
         </main>
 
