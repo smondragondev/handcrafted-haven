@@ -1,0 +1,10 @@
+.productCard{
+    padding: 15px;
+    color: black;
+}
+.productCard img{
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+
+}
