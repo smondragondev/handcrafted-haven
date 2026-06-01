@@ -20,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${openSans.className}`} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
-        
+
+  
+
         {/* 🌟 THE NAVIGATION BAR */}
         <nav className={styles.navbar}>
           
@@ -67,7 +69,7 @@ export default function RootLayout({
 
         {/* 🌟 THE FOOTER */}
         <footer className={styles.footer}>
-          <p>© {new Date().getFullYear()} Handcrafted Haven. Remote-Developers🇨🇦🇺🇸🇵🇪🇨🇱🇻🇪.</p>
+          <p>©2026 Handcrafted Haven. Remote-Developers🇨🇦🇺🇸🇵🇪🇨🇱🇻🇪.</p>
         </footer>
 
       </body>

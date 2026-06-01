@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./page.module.css";
 import ProductCard from "@/app/ui/productCard";
-import type { ProductData } from "@/app/ui/types.ts";
+import type { ProductData } from "@/app/ui/types";
 
 const listOfProductData: ProductData[] = [
   {
@@ -36,17 +36,25 @@ const listOfProductData: ProductData[] = [
 ];
 
 export default function Page() {
-  const [seachValue, setSearchValue] = useState();
+  const [seachValue, setSearchValue] = useState("");
   const [categoryFilter, setCategoryFilter] = useState(listOfProductData);
+  const [activeCategory,setActiveCategory] = useState<string| null>(null)
 
-  const filterCategories = (e:React.MouseEvent<HTMLLIElement>) => {
-    const selected = e.currentTarget.innerText;
-     setCategoryFilter(listOfProductData.filter((curData) => curData.category === selected))
+  const filterCategories = (category:string) => {
+    setActiveCategory((prev) =>(prev===category ? null :category))
   };
 
   const clearFilters = ()=>{
-    setCategoryFilter(listOfProductData)
+    setActiveCategory(null)
+    setSearchValue("")
   }
+
+  const visibleProducts = listOfProductData.filter((product) => {
+    const matchesCategory = !activeCategory || product.category === activeCategory;
+    const matchesSearch = !seachValue || product.name.toLowerCase().includes(seachValue.toLowerCase()) || product.description.toLowerCase().includes(seachValue.toLowerCase())
+
+    return matchesCategory && matchesSearch
+  })
 
   const categories: string[] = ["WoodCraft", "Pottery", "Textiles"];
   return (
@@ -54,7 +62,7 @@ export default function Page() {
       <div id="searchBar" className={styles.searchBar}>
         <div>
           <label htmlFor="search">Search</label>
-          <input id="search" type="text" />
+          <input id="search" name="search" type="text" value={seachValue} onChange={(e)=>setSearchValue(e.target.value) } />
           <input type="button" value={"Search"} />
         </div>
       </div>
@@ -62,15 +70,16 @@ export default function Page() {
         <span>Categories</span>
         <ul>
           {categories.map((category) => (
-            <li onClick={filterCategories} key={category}>
+            <li onClick={()=>filterCategories(category)} key={category} className={category === activeCategory ? styles.activeTab : ""}>
               {category}
+              
             </li>
           ))}
         </ul>
         <span onClick={clearFilters}>Clear Filters</span>
       </div>
       <div id="productsCollection" className={styles.productsCollection}>
-        {categoryFilter.map((product) => (
+        {visibleProducts.map((product) => (
           <ProductCard key={product.name} product={product} />
         ))}
       </div>
