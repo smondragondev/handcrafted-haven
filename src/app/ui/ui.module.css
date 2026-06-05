@@ -1,0 +1,9 @@
+.productCard{
+    padding: 15px;
+    color: black;
+}
+
+.cardImage {
+    width: 100%;
+    height: auto;
+}

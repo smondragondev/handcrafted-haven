@@ -1,0 +1,104 @@
+/*Global checkout*/
+
+.page {
+    background-color: #FAF2E0;
+    color: black;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.page h1 {
+    color: #448061;
+
+    font-size: 3rem;
+
+    margin-bottom: 2rem;
+}
+
+/*Products section*/
+.checkoutContainer {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.productsSection {
+    flex: 3;
+}
+
+.productCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1.5rem 0;
+
+    border-bottom: 1px solid #ccc;
+}
+
+.productImage {
+    width: 70px;
+    height: 70px;
+
+    background-color: #d9d9d9;
+}
+
+.productInfo {
+    flex: 1;
+    margin-left: 1rem;
+}
+
+.quantityBox {
+    padding: 0.5rem 1rem;
+
+    background-color: #FFC5D3;
+}
+
+.price {
+    min-width: 70px;
+    text-align: right;
+}
+
+/*Summary Section*/
+
+.summarySection {
+    flex: 1;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    padding: 1.5rem;
+}
+
+.summarySection h2 {
+    color: #448061;
+
+    font-size: 2.5rem;
+
+    margin-bottom: 2rem;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: .5rem;
+
+    font-size: 1.0rem;
+}
+
+.buyButton {
+    margin-top: 1rem;
+
+    width: 100%;
+    padding: 0.9rem;
+
+    border: none;
+
+    background-color: #448061;
+    color: white;
+
+    font-size: 1.4rem;
+
+    cursor: pointer;
+}
