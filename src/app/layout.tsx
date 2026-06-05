@@ -1,6 +1,5 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import Link from "next/link"; // Imported Next.js Link component
 import './globals.css';
 import styles from './layout.module.css'; // Importing your CSS module
 import { openSans } from "./ui/fonts";
@@ -44,7 +43,7 @@ export default function RootLayout({
 
           {/* Middle: Centered Navigation Links (Hidden automatically on Mobile) */}
           <ul className={styles.navLinks}>
-            <li><a href="/">Home</a></li>
+            <li><Link href="/">Home</Link></li>
             <li><Link href="/products">Products</Link></li>
             <li><a href="/categories">Categories</a></li>
             <li><a href="/about">About Us</a></li>
