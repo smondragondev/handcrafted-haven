@@ -1,14 +1,4 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -22,12 +12,9 @@
   display: flex;
   flex: 1;
   width: 100%;
-  max-width: 800px;
+  margin: 0 auto;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  background-color: var(--background);
 }
 
 .hero {
@@ -134,12 +121,7 @@ a.secondary {
     background: var(--button-secondary-hover);
     border-color: transparent;
   }
-}
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
 
   .intro {
     gap: 16px;
@@ -151,7 +133,7 @@ a.secondary {
     letter-spacing: -1.92px;
   }
 }
-
+/* 
 @media (prefers-color-scheme: dark) {
 
 
@@ -166,4 +148,4 @@ a.secondary {
     --button-secondary-hover: #1a1a1a;
     --button-secondary-border: #1a1a1a;
   }
-}
+} */
