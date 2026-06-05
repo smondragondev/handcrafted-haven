@@ -5,11 +5,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
-    /* Preserving your vertical breathing room */
     background-color: #FAF8F5;
-    /* Soft background from the wireframe */
     border-bottom: 2px solid #D2FFC4;
-    /* Keeping your light green accent line */
     position: sticky;
     top: 0;
     z-index: 50;
@@ -24,7 +21,6 @@
 
 .logoImage {
     height: 60px;
-    /* Scaled to sit perfectly in line with text and icons */
     width: 60px;
     object-fit: contain;
     border-radius: 50%;
@@ -43,12 +39,10 @@
     margin: 0;
     padding: 0;
     gap: 2.5rem;
-    /* Perfect, spacious gaps between middle links */
 }
 
 .navLinks a {
     color: #448061;
-    /* Keeping your team's beautiful dark green brand color */
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
@@ -57,7 +51,6 @@
 
 .navLinks a:hover {
     color: #1b4332;
-    /* Deepens cleanly on hover */
 }
 
 /* --- RIGHT SECTION: UTILITY ICONS --- */
@@ -84,13 +77,81 @@
     transform: scale(1.05);
 }
 
+.hamburgerBtn {
+    display: none;
+    background: none;
+    border: none;
+    color: #448061;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
 /* --- FOOTER STYLES --- */
 .footer {
     background-color: #448061;
-    /* Matches the dark green color palette */
     color: #ffffff;
     padding: 2rem 3rem;
     text-align: center;
     font-weight: 500;
     margin-top: auto;
+}
+
+/* ==========================================================================
+   📱 MOBILE & TABLET RESPONSIVE SYSTEM (Matches image_0d22ad.jpg Layout)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 1.5rem;
+        position: relative;
+        /* Anchor for absolute mobile components */
+        display: flex;
+        justify-content: center;
+        /* Forces everything to center by default */
+        align-items: center;
+        min-height: 70px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 🍔 Hamburger Button: Forced to the absolute Left Edge */
+    .hamburgerBtn {
+        display: flex !important;
+        align-items: center;
+        position: absolute;
+        left: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+    }
+
+    /* 🎯 Logo Container: Locked in the Dead-Center */
+    .logoContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .logoImage {
+        height: 45px;
+        width: 45px;
+    }
+
+    /* 🛍️ Utilities Block: Forced to the absolute Right Edge */
+    .navUtilities {
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 10;
+        flex-shrink: 0;
+    }
+
+    /* 🛑 Clear out standard text links on mobile */
+    .navLinks {
+        display: none !important;
+    }
 }
