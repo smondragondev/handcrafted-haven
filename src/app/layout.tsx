@@ -20,11 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${openSans.className}`} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
 
-  
+
 
         {/* 🌟 THE NAVIGATION BAR */}
         <nav className={styles.navbar}>
-          
+
           {/* 🍔 Left Corner: Mobile Hamburger Button Menu */}
           <button className={styles.hamburgerBtn} aria-label="Open Navigation Menu">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '28px', height: '28px' }}>
@@ -34,10 +34,10 @@ export default function RootLayout({
 
           {/* Center: Brand Crest & Title */}
           <div className={styles.logoContainer}>
-            <img 
+            <img
               src="/handcrafted.jpg" // Using your exact asset path from the file tree!
-              alt="Handcrafted Haven Logo" 
-              className={styles.logoImage} 
+              alt="Handcrafted Haven Logo"
+              className={styles.logoImage}
             />
           </div>
 
@@ -52,11 +52,11 @@ export default function RootLayout({
           {/* Right: Shopping Cart & Profile Icons */}
           <div className={styles.navUtilities}>
             {/* Shopping Cart Logo */}
-            <button className={styles.iconBtn} aria-label="View Shopping Cart">
+            <Link href="/checkout" className={styles.iconBtn} aria-label="View Shopping Cart">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '28px', height: '28px' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.385c.178 0 .355.07.488.194l.421 2.527m0 0l1.242 7.452a1.5 1.5 0 001.483 1.254h8.307a1.5 1.5 0 001.483-1.254l1.207-7.243a1.5 1.5 0 00-1.483-1.749H5.568m0 0H19.5" />
               </svg>
-            </button>
+            </Link>
 
             {/* 👤 Profile / Login Link (Now clickable shortcut to your new route!) */}
             <Link href="/profile" className={styles.iconBtn} aria-label="User Account">

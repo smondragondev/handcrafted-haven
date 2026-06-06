@@ -1,8 +1,11 @@
+"use client";
+
 import styles from "./page.module.css";
+import { useState } from "react";
 
 export default function CheckoutPage() {
     //fake database
-    const cartItems = [
+    const [cartItems, setCartItems] = useState([
         {
             id: 1,
             name: "Handmade Vase",
@@ -17,9 +20,51 @@ export default function CheckoutPage() {
             quantity: 2,
             image: "/basket.jpg"
         }
-    ];
-
+    ]);
     //Const here just for now
+
+    //Cart actions
+    const removeItem = (id: number) => {
+        setCartItems(
+            cartItems.filter(item => item.id !== id)
+        );
+    };
+
+    const decreaseQuantity = (id: number) => {
+        const product = cartItems.find(
+            item => item.id === id
+        );
+
+        if (!product) return;
+
+        if (product.quantity === 1) {
+            removeItem(id);
+            return;
+        }
+
+        setCartItems(
+            cartItems.map(item =>
+                item.id === id
+                    ? {
+                        ...item,
+                        quantity: item.quantity - 1
+                    }
+                    : item
+            )
+        );
+    };
+
+    const increaseQuantity = (id: number) => {
+        setCartItems(
+            cartItems.map(item =>
+                item.id === id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            )
+        );
+    };
+
+    //Calculations
     const subtotal = cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
@@ -46,12 +91,33 @@ export default function CheckoutPage() {
                             </div>
 
                             <div className={styles.quantityBox}>
-                                {item.quantity}
+                                <button
+                                    className={styles.quantityButton}
+                                    onClick={() => decreaseQuantity(item.id)}
+                                >
+                                    -
+                                </button>
+
+                                <span className={styles.quantityNumber}>{item.quantity}</span>
+
+                                <button
+                                    className={styles.quantityButton}
+                                    onClick={() => increaseQuantity(item.id)}
+                                >
+                                    +
+                                </button>
                             </div>
 
                             <div className={styles.price}>
-                                ${item.price}
+                                ${item.price.toFixed(2)}
                             </div>
+
+                            <button
+                                className={styles.removeButton}
+                                onClick={() => removeItem(item.id)}
+                            >
+                                ✕
+                            </button>
 
                         </div>
                     ))}
