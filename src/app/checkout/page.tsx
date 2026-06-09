@@ -2,6 +2,7 @@
 
 import styles from "./page.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CheckoutPage() {
     //fake database
@@ -64,6 +65,12 @@ export default function CheckoutPage() {
         );
     };
 
+    const router = useRouter();
+
+    const handleBuy = () => {
+        router.push("/checkout/confirmation");
+    };
+
     //Calculations
     const subtotal = cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
@@ -109,7 +116,7 @@ export default function CheckoutPage() {
                             </div>
 
                             <div className={styles.price}>
-                                ${item.price.toFixed(2)}
+                                ${(item.price * item.quantity).toFixed(2)}
                             </div>
 
                             <button
@@ -142,7 +149,7 @@ export default function CheckoutPage() {
                         <span>${total.toFixed(2)}</span>
                     </div>
 
-                    <button className={styles.buyButton}>
+                    <button className={styles.buyButton} onClick={handleBuy}>
                         Buy
                     </button>
                 </aside>
