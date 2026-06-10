@@ -1,0 +1,19 @@
+.body{
+    background-color: var( --parimary);
+    margin: 0 auto;
+    max-width: 500px;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 10px;
+
+}
+
+
+.body_from{
+    display: flex;
+    flex-direction: column;
+}
+
+.body_from input {
+    margin-bottom: 15px;
+}
