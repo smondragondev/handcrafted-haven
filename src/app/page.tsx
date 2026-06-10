@@ -1,5 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+// 1. Cleaner import moved to the top (Matching your lowercase filename)
+import Recommendations from './components/recommendations'; 
 
 export default function Home() {
   const features = [
@@ -18,6 +20,7 @@ export default function Home() {
     <div className={styles.page}>
       {/* Header */}
       <main className={styles.main}>
+        
         {/* Hero Section */}
         <section className={styles.hero}>
           <Image
@@ -39,6 +42,7 @@ export default function Home() {
             <a className={styles.primary}>Shop Now</a>
           </div>
         </section>
+
         {/* Shop by categories */}
         <section className={styles.categories}>
           <h1>Categories</h1>
@@ -55,6 +59,7 @@ export default function Home() {
             ))}
           </div>
         </section>
+
         {/* Features */}
         <section className={styles.features}>
           <h1>Features</h1>
@@ -73,8 +78,12 @@ export default function Home() {
             ))}
           </ul>
         </section>
+
+        
+        <Recommendations />
+
       </main>
-      {/* Footer */}
+      
     </div>
   );
 }
