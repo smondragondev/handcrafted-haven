@@ -9,9 +9,7 @@
 
 .page h1 {
     color: #448061;
-
     font-size: 3rem;
-
     margin-bottom: 2rem;
 }
 
@@ -30,16 +28,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 1.5rem 0;
-
     border-bottom: 1px solid #ccc;
 }
 
 .productImage {
     width: 70px;
     height: 70px;
-
     background-color: #d9d9d9;
 }
 
@@ -49,56 +44,90 @@
 }
 
 .quantityBox {
-    padding: 0.5rem 1rem;
 
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 0.25rem 0.5rem;
+    width: fit-content;
     background-color: #FFC5D3;
+}
+
+.quantityButton {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantityButton:hover {
+    opacity: 0.7;
+}
+
+.quantityNumber {
+    min-width: 24px;
+    text-align: center;
 }
 
 .price {
     min-width: 70px;
     text-align: right;
+    margin-right: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #448061;
+}
+
+.removeButton {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #888;
+}
+
+.removeButton:hover {
+    color: #d32f2f;
 }
 
 /*Summary Section*/
 
 .summarySection {
     flex: 1;
-
     border: 1px solid #ddd;
     border-radius: 8px;
-
     padding: 1.5rem;
 }
 
 .summarySection h2 {
     color: #448061;
-
     font-size: 2.5rem;
-
     margin-bottom: 2rem;
 }
 
 .summaryRow {
     display: flex;
     justify-content: space-between;
-
     margin-bottom: .5rem;
-
     font-size: 1.0rem;
 }
 
 .buyButton {
     margin-top: 1rem;
-
     width: 100%;
     padding: 0.9rem;
-
     border: none;
-
     background-color: #448061;
     color: white;
-
     font-size: 1.4rem;
-
     cursor: pointer;
 }

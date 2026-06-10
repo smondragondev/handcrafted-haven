@@ -1,0 +1,91 @@
+.page {
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #D2FFC4;
+
+}
+
+.confirmationCard {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.successTitle {
+    text-align: center;
+    color: #448061;
+    margin-bottom: 0.5rem;
+}
+
+.successMessage {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #ADFFF5;
+}
+
+.section h2 {
+    color: #448061;
+    margin-bottom: 1rem;
+}
+
+.orderItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.summary {
+    background-color: #FFC5D3;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.totalRow {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #448061;
+    margin-top: 1rem;
+    border-top: 2px solid #448061;
+    padding-top: 1rem;
+}
+
+.continueButton {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #448061;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.continueButton:hover {
+    transform: translateY(-2px);
+    background-color: #35654d;
+}
