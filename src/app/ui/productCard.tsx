@@ -1,16 +1,67 @@
-import styles from "./ui.module.css"
-import type {ProductData} from "@/app/ui/types"
-import Image from 'next/image'
+"use client";
+import styles from "./ui.module.css";
+import type { ProductData } from "@/app/ui/types";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
-export default function ProductCard({product}:{product:ProductData}){
+export default function ProductCard({ product }: { product: ProductData }) {
+  const [addedToCart, setAddedToCart] = useState(false);
+  const addToCart = () => {
+    const stored = localStorage.getItem("shoppingCart");
+    const cart = stored ? JSON.parse(stored) : [];
+    cart.push(product);
+    localStorage.setItem("shoppingCart", JSON.stringify(cart));
+  };
 
-    return (
-    <div className={styles.productCard} >
-        <Image width={300} height={200}  alt={`${product.name} image`} src={`/${product.img}`} className={styles.cardImage} priority/>
+  useEffect(() => {
+    const cart = localStorage.getItem("shoppingCart");
+    if (cart != null) {
+      const cartObj = JSON.parse(cart);
+      if (cartObj.some((p: ProductData) => p._id == product._id)) {
+        setAddedToCart(true);
+      }
+    }
+  }, [product._id]);
+
+  const toggleCart = () => {
+    const stored = localStorage.getItem("shoppingCart");
+    const cart = stored ? JSON.parse(stored) : [];
+
+    const exists = cart.some((p:ProductData) => p._id === product._id);
+
+    const updated = exists
+      ? cart.filter((p:ProductData) => p._id !== product._id) 
+      : [...cart, product]; 
+
+    localStorage.setItem("shoppingCart", JSON.stringify(updated));
+    setAddedToCart(!exists);
+  };
+
+  return (
+    <div className={styles.productCard}>
+      <div>
+        <Image
+          width={300}
+          height={200}
+          alt={`${product.name} image`}
+          src={`${product.imageUrl}`}
+          className={styles.cardImage}
+          priority
+        />
+
         <div>
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
+          <span>{product.category.toUpperCase()}</span>
+          <h3>{product.name}</h3>
+          <p>{product.description}</p>
         </div>
+      </div>
+
+      <div className={styles.productCardCheckout}>
+        <span>${product.price}</span>
+        <button onClick={toggleCart}>
+          {addedToCart ? "Remove from Cart" : "Add to Cart"}
+        </button>
+      </div>
     </div>
-    )
+  );
 }

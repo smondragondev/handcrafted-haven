@@ -1,9 +1,19 @@
 .productCard{
-    padding: 15px;
-    color: black;
+    padding: 10px;
+    color: black; 
+    border-radius: 10px;
+    background-color: white;    
+    display: flex;
+    flex-direction:column ;
+    justify-content: space-between;
 }
 
 .cardImage {
     width: 100%;
     height: auto;
+}
+
+.productCardCheckout{
+    display: flex;
+    justify-content: space-between;
 }
