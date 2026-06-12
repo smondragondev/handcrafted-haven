@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Metadata } from "next";
 import {
-  AddCategory,
   AddProduct,
   DeleteProduct,
   EditProduct,
@@ -41,7 +40,7 @@ export default function MyShop() {
     },
   ];
   return (
-    <div className={styles["main-container"]}>
+    <>
       <h1>My Shop</h1>
       <div className={styles["table-container"]}>
         <table className={styles["main-table"]}>
@@ -63,14 +62,12 @@ export default function MyShop() {
                   <div className={styles["main-buttons"]}>
                     <EditProduct></EditProduct>
                     <DeleteProduct></DeleteProduct>
-
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-
       </div>
       <ul className={styles["card-container"]}>
         {products.map((product) => (
@@ -97,8 +94,7 @@ export default function MyShop() {
       </ul>
       <div className={styles["main-buttons"]}>
         <AddProduct></AddProduct>
-        <AddCategory></AddCategory>
       </div>
-    </div>
+    </>
   );
 }

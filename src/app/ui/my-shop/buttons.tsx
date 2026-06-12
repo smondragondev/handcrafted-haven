@@ -4,7 +4,8 @@ import styles from "./myshop.module.css";
 
 export function AddProduct() {
   return (
-    <Link href="#" className={styles["primary-button"]}>
+    <Link href="/my-shop/product/create"
+          className={styles["primary-button"]}>
       <span>Add Product</span>
       <PlusIcon className={styles["icon"]}></PlusIcon>
     </Link>

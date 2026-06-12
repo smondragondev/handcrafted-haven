@@ -39,22 +39,27 @@
     width: fit-content;
     padding: 10px 20px;
     border-radius: 10px;
-    background-color: #D2FFC4;
+    background-color: var(--accentOne);
     color: #000;
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .primary-button:hover {
-    background-color: #448061;
+    background-color: var(--button-primary-hover);
     color: #fff;
 }
 
 .edit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #448061;
-    color: #000;
-    display: block;
+    color: var(--text-primary);
     border-radius: 5px;
+    padding: 4px 6px;
+    border: 2px solid;
 }
 
 .edit-button:hover {
@@ -62,10 +67,15 @@
 }
 
 .delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #FFC5D3;
     color: #000;
     border-radius: 5px;
     cursor: pointer;
+    height: 100%;
+    padding: 4px 6px;
 }
 
 .delete-button:hover {
@@ -82,6 +92,54 @@
 .product-info {
     display: flex;
     gap: 5px;
+}
+
+/* Form */
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid var(--foreground);
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+
+.input-field{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-field input[type="text"],
+.input-field input[type="number"],
+.input-field textarea
+{
+    width: 95%;
+    padding: 5px 5px;
+    border: 1px solid var(--accentTwo);
+    border-radius: 5px;
+}
+
+.input-field select
+{
+    width: 100%;
+    padding: 5px 5px;
+    border: 1px solid var(--accentTwo);
+    border-radius: 5px;
+    
+}
+
+.form button[type="submit"]{
+    background-color: var(--primary);
+    padding: 10px 20px;
+    font-size: x-large;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.form button[type="submit"]:hover{
+    background-color: var(--button-primary-hover);
+    color: var(--secondaryColor)
 }
 
 @media (min-width: 600px) {
