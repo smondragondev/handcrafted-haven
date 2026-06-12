@@ -5,6 +5,7 @@ import styles from './layout.module.css'; // Importing your CSS module
 import { openSans } from "./ui/fonts";
 import Link from "next/link";
 import pageStyles from './page.module.css'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: "Handcrafted haven app",
@@ -34,7 +35,7 @@ export default function RootLayout({
 
           {/* Center: Brand Crest & Title */}
           <div className={styles.logoContainer}>
-            <img
+            <Image
               src="/handcrafted.jpg" // Using your exact asset path from the file tree!
               alt="Handcrafted Haven Logo"
               className={styles.logoImage}

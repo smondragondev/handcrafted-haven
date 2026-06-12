@@ -5,23 +5,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function ProductCard({ product }: { product: ProductData }) {
-  const [addedToCart, setAddedToCart] = useState(false);
-  const addToCart = () => {
-    const stored = localStorage.getItem("shoppingCart");
-    const cart = stored ? JSON.parse(stored) : [];
-    cart.push(product);
-    localStorage.setItem("shoppingCart", JSON.stringify(cart));
-  };
-
-  useEffect(() => {
-    const cart = localStorage.getItem("shoppingCart");
-    if (cart != null) {
-      const cartObj = JSON.parse(cart);
-      if (cartObj.some((p: ProductData) => p._id == product._id)) {
-        setAddedToCart(true);
-      }
-    }
-  }, [product._id]);
+const [addedToCart, setAddedToCart] = useState(() => {
+  const cart = localStorage.getItem("shoppingCart");
+  if (cart == null) return false;
+  const cartObj = JSON.parse(cart);
+  return cartObj.some((p: ProductData) => p._id === product._id);
+});
 
   const toggleCart = () => {
     const stored = localStorage.getItem("shoppingCart");
