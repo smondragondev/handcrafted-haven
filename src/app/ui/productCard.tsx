@@ -2,16 +2,17 @@
 import styles from "./ui.module.css";
 import type { ProductData } from "@/app/ui/types";
 import Image from "next/image";
-import { useState } from "react";
+import {useEffect, useState } from "react";
 
 export default function ProductCard({ product }: { product: ProductData }) {
-const [addedToCart, setAddedToCart] = useState(() => {
-  const cart = localStorage.getItem("shoppingCart");
-  if (cart == null) return false;
-  const cartObj = JSON.parse(cart);
-  return cartObj.some((p: ProductData) => p._id === product._id);
-});
+  const [addedToCart, setAddedToCart] = useState(false);
 
+  useEffect(() => {
+    const cart = localStorage.getItem("shoppingCart");
+    if (cart == null) return;
+    const cartObj = JSON.parse(cart);
+    setAddedToCart(cartObj.some((p: ProductData) => p._id === product._id));
+  }, [product._id]);
   const toggleCart = () => {
     const stored = localStorage.getItem("shoppingCart");
     const cart = stored ? JSON.parse(stored) : [];

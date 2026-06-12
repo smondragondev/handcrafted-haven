@@ -3,9 +3,6 @@ import {GetAllProducts} from '@/app/lib/mongodb'
 
 export default async function Login(){
 
-    console.log("_______-")
-    console.log(await GetAllProducts())
-    console.log("______________")
     return (
         <div className={styles.body}>
             <h1>Login</h1>
