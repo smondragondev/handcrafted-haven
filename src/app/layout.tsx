@@ -39,6 +39,8 @@ export default function RootLayout({
               src="/handcrafted.jpg" // Using your exact asset path from the file tree!
               alt="Handcrafted Haven Logo"
               className={styles.logoImage}
+              height={200}
+              width={400}
             />
           </div>
 

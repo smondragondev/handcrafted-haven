@@ -13,6 +13,7 @@ export default function ProductCard({ product }: { product: ProductData }) {
     const cartObj = JSON.parse(cart);
     setAddedToCart(cartObj.some((p: ProductData) => p._id === product._id));
   }, [product._id]);
+  
   const toggleCart = () => {
     const stored = localStorage.getItem("shoppingCart");
     const cart = stored ? JSON.parse(stored) : [];
