@@ -4,12 +4,10 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import ProductCard from "@/app/ui/productCard";
 import type { ProductData } from "@/app/ui/types";
-import {GetAllProducts} from "@/app/lib/mongodb"
 
 
 export default function ProductView({products}:{products:ProductData[]}) {
   const [seachValue, setSearchValue] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState(products);
   const [activeCategory,setActiveCategory] = useState<string| null>(null)
 
   const filterCategories = (category:string) => {

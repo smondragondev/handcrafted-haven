@@ -2,7 +2,7 @@
 import styles from "./ui.module.css";
 import type { ProductData } from "@/app/ui/types";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ProductCard({ product }: { product: ProductData }) {
 const [addedToCart, setAddedToCart] = useState(() => {

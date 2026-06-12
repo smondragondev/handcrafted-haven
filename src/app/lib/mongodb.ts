@@ -1,4 +1,4 @@
-import { MongoClient,WithId } from "mongodb";
+import { MongoClient } from "mongodb";
 import { attachDatabasePool } from "@vercel/functions";
 import type { ProductDoc } from "@/app/ui/types";
 

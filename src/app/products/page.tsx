@@ -1,7 +1,6 @@
 import {GetAllProducts} from "@/app/lib/mongodb"
 import ProductView from "./ProductView"
 import type { ProductData } from "@/app/ui/types";
-import { WithId } from "mongodb";
 
 export default async function Page(){
     const docs = await GetAllProducts();
