@@ -1,5 +1,6 @@
 "use client";
-import { useActionState, useEffect, useState } from "react";
+
+import { useActionState, useState } from "react";
 import styles from "./myshop.module.css";
 import { State } from "@/app/lib/schemas";
 import { createProduct } from "@/app/lib/actions";
@@ -14,7 +15,7 @@ export function AddProduct() {
   );
 
   const contributorId =
-    sessionStorage.getItem("contributorId") ?? "test-contributor";
+    window.sessionStorage.getItem("contributorId") ?? "test-contributor";
   const selectedCategory = category || (state.values?.category ?? "");
   const submitWithCategory = (formData: FormData) => {
     setCategory(String(formData.get("category") ?? ""));
