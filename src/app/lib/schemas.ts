@@ -28,22 +28,37 @@ export type State = {
     };
     message?: string | null;
     values?: {
+        id?:string,
         name?: string,
         description?: string,
         category?: string,
         newCategory?: string,
-        price?: string
+        price?: string,
+        imageUrl?: string,
     }
 };
 
-
-export interface ProductDataCreate {
+export interface ProductDataCore{
     name: string;
     description: string;
     category: string;
     price: number;
     imageUrl: string;
+    contributorId: string;
+}
+
+export interface ProductDataCreate extends ProductDataCore {
     createdAt: string;
     updatedAt: string;
+}
+
+export interface ProductDataUpdate extends ProductDataCore {
+    id : string;
+    name: string;
+    description: string;
+    category: string;
+    price: number;
+    imageUrl: string;
     contributorId: string;
+    updatedAt: string;
 }

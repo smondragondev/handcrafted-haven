@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import styles from "./myshop.module.css";
 import { State } from "@/app/lib/schemas";
 import { createProduct, editProduct } from "@/app/lib/actions";
+import { XCircleIcon } from "@heroicons/react/24/outline";
 
 export function FormProduct({
   product,
@@ -15,23 +16,30 @@ export function FormProduct({
   type: "edit" | "create";
 }) {
   const [hasNewCategory, setHasNewCategory] = useState(false);
+  const [hasFile, setHasFile] = useState(product?.values?.imageUrl ? true : false);
   const [category, setCategory] = useState("");
   const initialState: State = product ?? {
     message: null,
     errors: {},
     values: {},
   };
+  console.log("Initial State", initialState);
   const [state, formAction, isPending] = useActionState(
-    type === "create" ? createProduct : editProduct,
+    type === "create"
+      ? createProduct
+      : editProduct.bind(null, product?.values?.id ?? ""),
     initialState,
   );
-  const contributorId =
-    window.sessionStorage.getItem("contributorId") ?? "test-contributor";
+  const contributorId = "test-contributor";
   const selectedCategory = category || (state.values?.category ?? "");
   const submitWithCategory = (formData: FormData) => {
     setCategory(String(formData.get("category") ?? ""));
     return formAction(formData);
   };
+
+  const replaceFile = () => {
+    setHasFile(false);
+  }
 
   return (
     <form action={submitWithCategory} className={styles.form}>
@@ -119,10 +127,23 @@ export function FormProduct({
               ))}
           </div>
         </div>
-        <div className={styles["input-field"]}>
-          <label htmlFor="image">Image</label>
-          <input type="file" id="image" name="image" />
-        </div>
+        { hasFile ? (
+          <div className={styles["replace-file"]}>
+            <button type="button" onClick={replaceFile}>
+              <span className={styles["circle-icon"]}>
+                <XCircleIcon></XCircleIcon>
+              </span>
+              <span>Replace</span>
+            </button>
+            <span>Archivo cargado: {initialState.values?.imageUrl}</span>
+          </div>
+        ) : (
+          <div className={styles["input-field"]}>
+            <label htmlFor="image">Image</label>
+            <input type="file" id="image" name="image" />
+          </div>
+        )}
+
         <input
           type="hidden"
           name="contributorId"

@@ -189,6 +189,30 @@
     margin-top: 0;
 }
 
+.replace-file button{
+    background-color: var(--accentTwo);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.replace-file button:hover {
+    background-color: var(--accentOne);
+    color: var(--text-primary);
+}
+
+.circle-icon{
+    width: 18px;
+    height: 18px;
+}
+
 @media (min-width: 600px) {
 
     .main-container h1 {

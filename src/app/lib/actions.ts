@@ -3,15 +3,15 @@
 import { z } from 'zod';
 import { revalidatePath } from 'next/cache'; //Clean the cache to trigger a new request to the server
 import { redirect } from 'next/navigation';
-import { CreateProduct, ProductDataCreate, State } from './schemas';
+import { CreateProduct, ProductDataCreate, ProductDataUpdate, State } from './schemas';
 import { put } from '@vercel/blob';
-import { createProductDB } from './mongodb';
+import { createProductDB, editProductDB } from './mongodb';
 
 
-export async function createProduct(prevState: State, formData: FormData) {
+export async function createProduct(prevState: State, formData: FormData): Promise<State> {
 
     const image = formData.get('image');
-    console.log("Cform : ",formData);
+    console.log("Cform : ", formData);
     let blob;
     if ((image instanceof File) && image.size > 0) {
         blob = await put(
@@ -81,10 +81,10 @@ export async function createProduct(prevState: State, formData: FormData) {
     redirect('/my-shop');
 }
 
-export async function editProduct(prevState: State, formData: FormData) {
+export async function editProduct(id: string, prevState: State, formData: FormData): Promise<State> {
 
     const image = formData.get('image');
-    console.log("Cform : ",formData);
+    console.log("Cform : ", formData);
     let blob;
     if ((image instanceof File) && image.size > 0) {
         blob = await put(
@@ -103,6 +103,7 @@ export async function editProduct(prevState: State, formData: FormData) {
         description: formData.get("description"),
         category: formCategory,
         price: formData.get('price'),
+        // TODO REVIEW THIS BECAUSE the imageUrl is "" when is not replaced by the button Replace
         imageUrl: blob?.url ?? "",
         contributorId: formData.get("contributorId") ?? "",
     });
@@ -126,17 +127,18 @@ export async function editProduct(prevState: State, formData: FormData) {
     const date = new Date().toISOString().split('T')[0];
 
     try {
-        const data: ProductDataCreate = {
+        const data: ProductDataUpdate = {
+            id,
             name,
             description,
             category,
             price,
             imageUrl,
-            createdAt: date,
             updatedAt: date,
             contributorId,
         }
-        await createProductDB(data);
+        console.log("Product data", data)
+        await editProductDB(data);
         // return {
         //     id,
         //     message: 'New Product Created'
