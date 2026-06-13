@@ -12,10 +12,10 @@ export default async function Page() {
 //   const customers = await fetchCustomers();
  
   return (
-    <main>
+    <>
       <h1> Add Product </h1>  
       {/* <Form customers={customers} /> */}
       <AddProduct></AddProduct>
-    </main>
+    </>
   );
 }

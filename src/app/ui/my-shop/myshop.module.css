@@ -8,6 +8,7 @@
 
 .card-container {
     list-style: none;
+    padding: 0;
 }
 
 .product-card {
@@ -15,7 +16,25 @@
     grid-template-columns: 1fr 10px 1fr;
     padding: 10px;
     align-items: center;
+    border: 1px solid;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
+
+.product-button {
+    display: flex;
+    gap: 10px;
+    justify-content: end;
+    grid-column: 2 / -1;
+}
+
+.product-info {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .main-table {
     display: none;
@@ -82,29 +101,19 @@
     background-color: #f498ae;
 }
 
-.product-button {
-    display: flex;
-    gap: 10px;
-    justify-content: end;
-    grid-column: 2 / -1;
-}
-
-.product-info {
-    display: flex;
-    gap: 5px;
-}
 
 /* Form */
-.form{
+.input-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     border: 1px solid var(--foreground);
     padding: 20px 10px;
     border-radius: 10px;
+    width: 100%;
 }
 
-.input-field{
+.input-field {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -112,24 +121,22 @@
 
 .input-field input[type="text"],
 .input-field input[type="number"],
-.input-field textarea
-{
+.input-field textarea {
     width: 95%;
     padding: 5px 5px;
     border: 1px solid var(--accentTwo);
     border-radius: 5px;
 }
 
-.input-field select
-{
-    width: 100%;
+.input-field select {
+    width: 98%;
     padding: 5px 5px;
     border: 1px solid var(--accentTwo);
     border-radius: 5px;
-    
+
 }
 
-.form button[type="submit"]{
+.input-container button[type="submit"] {
     background-color: var(--primary);
     padding: 10px 20px;
     font-size: x-large;
@@ -137,9 +144,49 @@
     border-radius: 5px;
 }
 
-.form button[type="submit"]:hover{
+.input-container button[type="submit"]:hover {
     background-color: var(--button-primary-hover);
-    color: var(--secondaryColor)
+    color: var(--secondaryColor);
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+
+/* Style the text next to the button */
+.input-field input[type="file"] {
+    color: var(--text-secondary);
+}
+
+/* Style the actual clickable button */
+.input-field input[type="file"]::file-selector-button {
+    background-color: var(--accentTwo);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background 0.2s ease;
+}
+
+/* Add hover effects */
+.input-field input[type="file"]::file-selector-button:hover {
+    background-color: var(--accentOne);
+    color: var(--text-primary);
+}
+
+.error {
+    display: flex;
+    font-size: 14px;
+    color: red;
+    margin-bottom: -14px;
+
+}
+
+.error p {
+    margin-top: 0;
 }
 
 @media (min-width: 600px) {
@@ -175,6 +222,19 @@
 
     .card-container {
         display: none;
+    }
+
+    .input-container {
+        max-width: 800px;
+        padding: 30px 40px;
+    }
+
+    .input-field select {
+        width: 96.5%;
+    }
+
+    .input-container button[type="submit"] {
+        width: 96.5%;
     }
 
 }
