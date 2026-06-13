@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Metadata } from "next";
 import {
   AddProduct,
@@ -33,7 +32,7 @@ export default async function MyShop() {
                 <td>{product.category}</td>
                 <td>
                   <div className={styles["main-buttons"]}>
-                    <EditProduct></EditProduct>
+                    <EditProduct id={product._id.toString()}></EditProduct>
                     <DeleteProduct></DeleteProduct>
                   </div>
                 </td>
@@ -54,7 +53,7 @@ export default async function MyShop() {
               </div>
             </div>
             <div className={styles["product-button"]}>
-              <EditProduct></EditProduct>
+              <EditProduct id={product._id.toString()}></EditProduct>
               <DeleteProduct></DeleteProduct>
             </div>
           </li>

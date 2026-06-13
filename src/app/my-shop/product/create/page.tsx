@@ -2,7 +2,7 @@
 // import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
 // import { fetchCustomers } from '@/app/lib/data';
 import { Metadata } from 'next';
-import { AddProduct } from '@/app/ui/my-shop/forms'
+import { FormProduct } from '@/app/ui/my-shop/forms'
 import { GetCategories } from '@/app/lib/mongodb';
  
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default async function Page() {
     <>
       <h1> Add Product </h1>  
       {/* <Form customers={customers} /> */}
-      <AddProduct categories={categories}></AddProduct>
+      <FormProduct categories={categories} type="create"></FormProduct>
     </>
   );
 }

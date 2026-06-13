@@ -28,7 +28,14 @@ const GetCategories = async () => {
 const GetProductById = async (id: string) => {
     const db = client.db("handcraftedhavendb");
     const products = db.collection("products");
-    return products.findOne({ _id: new ObjectId(id) });
+    const product = await products.findOne({ _id: new ObjectId(id) });
+    return {
+        name: product?.name,
+        description: product?.description,
+        price: product?.price,
+        category: product?.category,
+        imageUrl: product?.imageUrl,
+    }
 }
 
 const createProductDB = async (data: ProductDataCreate) => {

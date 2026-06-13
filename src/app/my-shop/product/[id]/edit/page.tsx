@@ -1,11 +1,11 @@
-
 import { notFound } from "next/navigation";
-import { Metadata } from 'next';
-import { EditProduct } from "@/app/ui/my-shop/buttons";
+import { Metadata } from "next";
 import { GetCategories, GetProductById } from "@/app/lib/mongodb";
- 
+import { FormProduct } from "@/app/ui/my-shop/forms";
+import { State } from "@/app/lib/schemas";
+
 export const metadata: Metadata = {
-  title: 'Edit Invoice',
+  title: "Edit Product",
 };
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
@@ -18,9 +18,15 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   if (!product) {
     notFound();
   }
+  const productState: State = {
+    values: {
+      ...product,
+    },
+  };
   return (
-    <main>
-      <EditProduct />
-    </main>
+    <>
+      <h1> Edit Product </h1>  
+      <FormProduct product={productState} categories={categories} type="edit"/>
+    </>
   );
 }

@@ -21,9 +21,9 @@ export function AddCategory() {
     )
 }
 
-export function EditProduct() {
+export function EditProduct({id}:{id:string}) {
     return (
-        <Link href="" className={styles["edit-button"]}>
+        <Link href={`/my-shop/product/${id}/edit`} className={styles["edit-button"]}>
             <PencilIcon className={styles["icon-button"]}></PencilIcon>
         </Link>
     )
