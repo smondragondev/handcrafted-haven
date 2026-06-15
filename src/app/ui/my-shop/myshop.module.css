@@ -296,12 +296,12 @@
         width: 96.5%;
     }
 
-    .main-buttons {
-        margin-bottom: 50px;
-    }
-
     .header{
         padding-right: 40px;
+    }
+
+    .primary-button{
+        margin-bottom: 50px;
     }
 
 }
