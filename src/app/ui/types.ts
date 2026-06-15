@@ -8,7 +8,7 @@ export interface ProductDoc {
   price: number;
   imageUrl: string;
   contributorId: ObjectId;
-  createdAt: Date;
+  createdAt: string;
 }
 
 // what the client receives after serializing at the boundary
