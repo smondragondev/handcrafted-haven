@@ -1,5 +1,6 @@
 import { MongoClient, ObjectId } from "mongodb";
 import { attachDatabasePool } from "@vercel/functions";
+import type { ProductDoc } from "@/app/ui/types";
 import { ProductDataCreate, ProductDataUpdate, ProductUpdateDB } from "./schemas";
 
 const uri = process.env.MONGODB_URI || "";
@@ -14,7 +15,7 @@ attachDatabasePool(client);
 const GetAllProducts = async () => {
 
     const db = client.db("handcraftedhavendb")
-    const products = db.collection("products")
+    const products = db.collection<ProductDoc>("products")
 
     return products.find().toArray();
 }
