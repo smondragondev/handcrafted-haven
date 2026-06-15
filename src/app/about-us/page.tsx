@@ -2,7 +2,6 @@
 
 import styles from "./page.module.css";
 
-
 export default function AboutUsPage() {
 
     return (
@@ -30,7 +29,6 @@ export default function AboutUsPage() {
                         </p>
 
                         <p>
-
                             We believe in supporting small-scale creators and strengthening a
                             community where talent and innovation can flourish.
                         </p>

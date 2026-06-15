@@ -2,7 +2,8 @@
 import styles from "./ui.module.css";
 import type { ProductData } from "@/app/ui/types";
 import Image from "next/image";
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function ProductCard({ product }: { product: ProductData }) {
   const [addedToCart, setAddedToCart] = useState(false);
@@ -13,16 +14,16 @@ export default function ProductCard({ product }: { product: ProductData }) {
     const cartObj = JSON.parse(cart);
     setAddedToCart(cartObj.some((p: ProductData) => p._id === product._id));
   }, [product._id]);
-  
+
   const toggleCart = () => {
     const stored = localStorage.getItem("shoppingCart");
     const cart = stored ? JSON.parse(stored) : [];
 
-    const exists = cart.some((p:ProductData) => p._id === product._id);
+    const exists = cart.some((p: ProductData) => p._id === product._id);
 
     const updated = exists
-      ? cart.filter((p:ProductData) => p._id !== product._id) 
-      : [...cart, product]; 
+      ? cart.filter((p: ProductData) => p._id !== product._id)
+      : [...cart, product];
 
     localStorage.setItem("shoppingCart", JSON.stringify(updated));
     setAddedToCart(!exists);
@@ -30,7 +31,8 @@ export default function ProductCard({ product }: { product: ProductData }) {
 
   return (
     <div className={styles.productCard}>
-      <div>
+
+      <Link href={`/products/${product._id}`} className={styles.cardLink}>
         <Image
           width={300}
           height={200}
@@ -45,7 +47,7 @@ export default function ProductCard({ product }: { product: ProductData }) {
           <h3>{product.name}</h3>
           <p>{product.description}</p>
         </div>
-      </div>
+      </Link>
 
       <div className={styles.productCardCheckout}>
         <span>${product.price}</span>

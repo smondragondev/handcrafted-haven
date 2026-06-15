@@ -3,37 +3,54 @@
 import styles from "./page.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import type { CartItem, ProductData } from "@/app/ui/types";
+import { useEffect } from "react";
+import Image from "next/image";
 
 export default function CheckoutPage() {
-    //fake database
-    const [cartItems, setCartItems] = useState([
-        {
-            id: 1,
-            name: "Handmade Vase",
-            price: 25,
-            quantity: 1,
-            image: "/vase.jpg"
-        },
-        {
-            id: 2,
-            name: "Woven Basket",
-            price: 15,
-            quantity: 2,
-            image: "/basket.jpg"
-        }
-    ]);
-    //Const here just for now
+
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        const storedCart =
+            localStorage.getItem("shoppingCart");
+
+        if (!storedCart) return;
+
+        const products: ProductData[] =
+            JSON.parse(storedCart);
+
+        const cartProducts: CartItem[] =
+            products.map(product => ({
+                ...product,
+                quantity: 1
+            }));
+
+        setCartItems(cartProducts);
+
+    }, []);
 
     //Cart actions
-    const removeItem = (id: number) => {
-        setCartItems(
-            cartItems.filter(item => item.id !== id)
+    const removeItem = (id: string) => {
+
+        const updated =
+            cartItems.filter(
+                item => item._id !== id
+            );
+
+        setCartItems(updated);
+
+        localStorage.setItem(
+            "shoppingCart",
+            JSON.stringify(updated)
         );
     };
 
-    const decreaseQuantity = (id: number) => {
+    const decreaseQuantity = (id: string) => {
+
         const product = cartItems.find(
-            item => item.id === id
+            item => item._id === id
         );
 
         if (!product) return;
@@ -45,7 +62,7 @@ export default function CheckoutPage() {
 
         setCartItems(
             cartItems.map(item =>
-                item.id === id
+                item._id === id
                     ? {
                         ...item,
                         quantity: item.quantity - 1
@@ -55,20 +72,59 @@ export default function CheckoutPage() {
         );
     };
 
-    const increaseQuantity = (id: number) => {
+    const increaseQuantity = (id: string) => {
         setCartItems(
             cartItems.map(item =>
-                item.id === id
-                    ? { ...item, quantity: item.quantity + 1 }
+                item._id === id
+                    ? {
+                        ...item,
+                        quantity: item.quantity + 1
+                    }
                     : item
             )
         );
     };
 
-    const router = useRouter();
+    const handleBuy = async () => {
 
-    const handleBuy = () => {
-        router.push("/checkout/confirmation");
+        const order = {
+            orderNumber: `ORD-${Date.now()}`,
+
+            date: new Date().toLocaleDateString(),
+
+            items: cartItems,
+
+            subtotal,
+            shipping,
+            total,
+
+            createdAt: new Date().toISOString()
+        };
+
+        const response = await fetch(
+            "/api/orders",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(order)
+            }
+        );
+
+        if (response.ok) {
+
+            localStorage.setItem(
+                "lastOrder",
+                JSON.stringify(order)
+            );
+
+            localStorage.removeItem("shoppingCart");
+
+            router.push("/checkout/confirmation");
+        }
     };
 
     //Calculations
@@ -78,6 +134,25 @@ export default function CheckoutPage() {
     );
     const shipping = 5;
     const total = subtotal + shipping;
+
+    if (cartItems.length === 0) {
+        return (
+            <div className={styles.emptyCart}>
+                <h1>Your Cart is Empty</h1>
+
+                <p>
+                    Start shopping now and discover amazing handcrafted items.
+                </p>
+
+                <button
+                    className={styles.shopButton}
+                    onClick={() => router.push("/products")}
+                >
+                    Go Shopping
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.page}>
@@ -89,9 +164,15 @@ export default function CheckoutPage() {
                 <section className={styles.productsSection}>
 
                     {cartItems.map((item) => (
-                        <div key={item.id} className={styles.productCard}>
+                        <div key={item._id} className={styles.productCard}>
 
-                            <div className={styles.productImage}></div>
+                            <Image
+                                src={item.imageUrl}
+                                alt={item.name}
+                                width={120}
+                                height={120}
+                                className={styles.productImage}
+                            />
 
                             <div className={styles.productInfo}>
                                 <h3>{item.name}</h3>
@@ -100,7 +181,7 @@ export default function CheckoutPage() {
                             <div className={styles.quantityBox}>
                                 <button
                                     className={styles.quantityButton}
-                                    onClick={() => decreaseQuantity(item.id)}
+                                    onClick={() => decreaseQuantity(item._id)}
                                 >
                                     -
                                 </button>
@@ -109,7 +190,7 @@ export default function CheckoutPage() {
 
                                 <button
                                     className={styles.quantityButton}
-                                    onClick={() => increaseQuantity(item.id)}
+                                    onClick={() => increaseQuantity(item._id)}
                                 >
                                     +
                                 </button>
@@ -121,7 +202,7 @@ export default function CheckoutPage() {
 
                             <button
                                 className={styles.removeButton}
-                                onClick={() => removeItem(item.id)}
+                                onClick={() => removeItem(item._id)}
                             >
                                 ✕
                             </button>

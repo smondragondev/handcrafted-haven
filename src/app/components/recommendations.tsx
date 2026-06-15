@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../page.module.css'; // Importing your CSS modules
+import { GetAllProducts } from "@/app/lib/mongodb";
 
 interface Product {
   id: string;
@@ -11,41 +12,13 @@ interface Product {
   category: string;
 }
 
-const MOCK_RECOMMENDATIONS: Product[] = [
-  {
-    id: 'rec-1',
-    title: 'Handcrafted Wooden Bowl',
-    price: 45.00,
-    imageSrc: '/category.webp',
-    category: 'Kitchenware',
-  },
-  {
-    id: 'rec-2',
-    title: 'Vintage Ceramic Vase',
-    price: 32.00,
-    imageSrc: '/category.webp',
-    category: 'Home Decor',
-  },
-  {
-    id: 'rec-3',
-    title: 'Handwoven Cotton Throw Blanket',
-    price: 65.00,
-    imageSrc: '/category.webp',
-    category: 'Bedding',
-  },
-  {
-    id: 'rec-4',
-    title: 'Minimalist Clay Mug',
-    price: 18.00,
-    imageSrc: '/category.webp',
-    category: 'Kitchenware',
-  },
-];
+export default async function Recommendations() {
 
-export default function Recommendations() {
+  const products = await GetAllProducts();
+
   return (
     <section className={styles.recommendationsSection}>
-      
+
       {/* Heading */}
       <div className={styles.recommendationsHeading}>
         <h2>Recommended For You</h2>
@@ -54,14 +27,14 @@ export default function Recommendations() {
 
       {/* 4-Column Grid */}
       <div className={styles.recommendationsGrid}>
-        {MOCK_RECOMMENDATIONS.map((product) => (
-          <div key={product.id} className={styles.productCard}>
-            
+        {products.slice(0, 4).map((product) => (
+          <div key={product._id.toString()} className={styles.productCard}>
+
             {/* Image Container */}
             <div className={styles.imageWrapper}>
               <Image
-                src={product.imageSrc}
-                alt={product.title}
+                src={product.imageUrl}
+                alt={product.name}
                 fill
                 sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className={styles.cardImage}
@@ -73,11 +46,11 @@ export default function Recommendations() {
             <div className={styles.cardDetails}>
               <p className={styles.categoryTag}>{product.category}</p>
               <h3 className={styles.productTitle}>
-                <Link href={`/products/${product.id}`}>
-                  {product.title}
+                <Link href={`/products/${product._id}`}>
+                  {product.name}
                 </Link>
               </h3>
-              
+
               <div className={styles.cardFooter}>
                 <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
                 <span className={styles.viewDetails}>View Details &rarr;</span>
