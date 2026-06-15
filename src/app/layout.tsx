@@ -49,7 +49,7 @@ export default function RootLayout({
             <li><Link href="/">Home</Link></li>
             <li><Link href="/products">Products</Link></li>
             <li><a href="/categories">Categories</a></li>
-            <li><a href="/about">About Us</a></li>
+            <li><a href="/about-us">About Us</a></li>
           </ul>
 
           {/* Right: Shopping Cart & Profile Icons */}

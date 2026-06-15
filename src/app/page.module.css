@@ -32,11 +32,16 @@
 
 .hero {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  background-color: var(--gray-background);
-  min-height: 100dvh;
+  justify-content: center;
+  align-items: start;
+  min-height: 80dvh;
+  background-color: #f9f9f9;
+  padding: 10px 20px;
+}
+
+.hero-description{
+  margin-bottom: 20px;
 }
 
 .hero-image {
@@ -45,6 +50,7 @@
 
 .hero-mobile-image {
   display: block;
+  margin: auto;
 }
 
 .categories {
@@ -88,9 +94,6 @@
   max-width: 440px;
   gap: 16px;
   font-size: 22px;
-  position: absolute;
-  bottom: 140px;
-  left: 50px;
 }
 
 .ctas a {
@@ -105,11 +108,12 @@
   cursor: pointer;
   width: fit-content;
   font-weight: 500;
+  text-decoration: none;
 }
 
 a.primary {
   background: var(--button-primary);
-  color: var(--text-primary);
+  color: var(--background);
   gap: 8px;
 }
 
@@ -122,6 +126,7 @@ a.secondary {
   a.primary:hover {
     background: var(--button-primary-hover);
     border-color: transparent;
+    color: var(--foreground);
   }
 
   a.secondary:hover {
@@ -149,12 +154,34 @@ a.secondary {
   .features-container {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+
+  .hero {
+    flex-direction: row;
+    min-height: 80dvh;
+    padding: 50px 40px;
+  }
+
+  .hero-description {
+    height: 100%;
+    padding-right: 40px;
+  }
+
+  .hero-description h1 {
+    font-size: 64px;
+  }
+
+  .hero-description h2 {
+    font-size: 24px;
   }
 
   .ctas {
-    bottom: 60px;
-    left: 450px;
+    justify-content: start;
+    max-width: 1500px;
   }
+
 }
 
 /* <--- 2. FIXED: Closed out the media query correctly */
