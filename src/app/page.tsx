@@ -5,9 +5,9 @@ import Recommendations from "./components/recommendations";
 
 export default function Home() {
   const features = [
-    { title: "Unique Handmade Finds", image: "/feature.svg" },
-    { title: "Support Small Creators", image: "/feature.svg" },
-    { title: "Quality You Can Feel", image: "/feature.svg" },
+    { title: "Unique Handmade Finds", image: "/palette.svg" },
+    { title: "Support Small Creators", image: "/support-small-creators.svg" },
+    { title: "Quality You Can Feel", image: "/award.svg" },
   ];
 
   return (
@@ -38,8 +38,8 @@ export default function Home() {
           />
           <Image
             src="/hero-image-mobile.webp"
-            width={560}
-            height={357}
+            width={280}
+            height={178.5}
             className={styles["hero-mobile-image"]}
             alt="Handcrafted objects"
           />

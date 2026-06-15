@@ -32,14 +32,17 @@
 
 .hero {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: start;
   min-height: 80dvh;
   background-color: #f9f9f9;
-  padding: 50px 40px;
+  padding: 10px 20px;
 }
 
-
+.hero-description{
+  margin-bottom: 20px;
+}
 
 .hero-image {
   display: none;
@@ -47,6 +50,7 @@
 
 .hero-mobile-image {
   display: block;
+  margin: auto;
 }
 
 .categories {
@@ -90,9 +94,6 @@
   max-width: 440px;
   gap: 16px;
   font-size: 22px;
-  position: absolute;
-  bottom: 140px;
-  left: 50px;
 }
 
 .ctas a {
@@ -152,6 +153,14 @@ a.secondary {
   .features-container {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+
+  .hero {
+    flex-direction: row;
+    min-height: 80dvh;
+    padding: 50px 40px;
   }
 
   .hero-description {
@@ -159,18 +168,15 @@ a.secondary {
     padding-right: 40px;
   }
 
-  .hero-description h1{
+  .hero-description h1 {
     font-size: 64px;
   }
 
-  .hero-description h2{
+  .hero-description h2 {
     font-size: 24px;
   }
 
   .ctas {
-    position: relative;
-    left: 0;
-    bottom: 0;
     justify-content: start;
     max-width: 1500px;
   }
