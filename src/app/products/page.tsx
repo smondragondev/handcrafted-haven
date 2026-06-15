@@ -9,7 +9,7 @@ export default async function Page(){
     ...p,
     _id: p._id.toString(),
     contributorId: p.contributorId.toString(),
-    createdAt: p.createdAt.toISOString(),
+    createdAt: p.createdAt,
   }));
 
     return <ProductView products={products}/>
