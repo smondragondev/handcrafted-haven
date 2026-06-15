@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 // 1. Cleaner import moved to the top (Matching your lowercase filename)
 import Recommendations from "./components/recommendations";
+import Link from "next/link";
 
 export default function Home() {
   const features = [
@@ -25,7 +26,7 @@ export default function Home() {
               home.
             </p>
             <div className={styles.ctas}>
-              <a className={styles.primary}>Shop Now</a>
+              <Link href="/products" className={styles.primary}>Shop Now</Link>
             </div>
           </div>
           <Image
