@@ -1,28 +1,33 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 // 1. Cleaner import moved to the top (Matching your lowercase filename)
-import Recommendations from './components/recommendations'; 
+import Recommendations from "./components/recommendations";
 
 export default function Home() {
   const features = [
-    { title: "Feature 1", image: "/feature.svg" },
-    { title: "Feature 2", image: "/feature.svg" },
-    { title: "Feature 3", image: "/feature.svg" },
-  ];
-
-  const categories = [
-    { title: "Category 1", image: "/category.webp" },
-    { title: "Category 2", image: "/category.webp" },
-    { title: "Category 3", image: "/category.webp" },
+    { title: "Unique Handmade Finds", image: "/feature.svg" },
+    { title: "Support Small Creators", image: "/feature.svg" },
+    { title: "Quality You Can Feel", image: "/feature.svg" },
   ];
 
   return (
     <div className={styles.page}>
       {/* Header */}
       <main className={styles.main}>
-        
         {/* Hero Section */}
         <section className={styles.hero}>
+          <div className={styles["hero-description"]}>
+            <h1>Handcrafted Haven</h1>
+            <h2>The marketplace for handmade excellence</h2>
+            <p>
+              Discover unique, handmade treasures from talented artisans around
+              the world. Support creators and find one-of-a-kind pieces for your
+              home.
+            </p>
+            <div className={styles.ctas}>
+              <a className={styles.primary}>Shop Now</a>
+            </div>
+          </div>
           <Image
             src="/hero-image.webp"
             alt="Handcrafted objects"
@@ -38,26 +43,6 @@ export default function Home() {
             className={styles["hero-mobile-image"]}
             alt="Handcrafted objects"
           />
-          <div className={styles.ctas}>
-            <a className={styles.primary}>Shop Now</a>
-          </div>
-        </section>
-
-        {/* Shop by categories */}
-        <section className={styles.categories}>
-          <h1>Categories</h1>
-          <div className={styles["categories-container"]}>
-            {categories.map((category, index) => (
-              <Image
-                key={index}
-                src={category.image}
-                alt={category.title}
-                width={300}
-                height={200}
-                priority
-              />
-            ))}
-          </div>
         </section>
 
         {/* Features */}
@@ -79,11 +64,8 @@ export default function Home() {
           </ul>
         </section>
 
-        
         <Recommendations />
-
       </main>
-      
     </div>
   );
 }

@@ -33,11 +33,13 @@
 .hero {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: var(--gray-background);
-  min-height: 100dvh;
+  align-items: start;
+  min-height: 80dvh;
+  background-color: #f9f9f9;
+  padding: 50px 40px;
 }
+
+
 
 .hero-image {
   display: none;
@@ -109,7 +111,7 @@
 
 a.primary {
   background: var(--button-primary);
-  color: var(--text-primary);
+  color: var(--background);
   gap: 8px;
 }
 
@@ -122,6 +124,7 @@ a.secondary {
   a.primary:hover {
     background: var(--button-primary-hover);
     border-color: transparent;
+    color: var(--foreground);
   }
 
   a.secondary:hover {
@@ -151,10 +154,27 @@ a.secondary {
     flex-wrap: wrap;
   }
 
-  .ctas {
-    bottom: 60px;
-    left: 450px;
+  .hero-description {
+    height: 100%;
+    padding-right: 40px;
   }
+
+  .hero-description h1{
+    font-size: 64px;
+  }
+
+  .hero-description h2{
+    font-size: 24px;
+  }
+
+  .ctas {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    justify-content: start;
+    max-width: 1500px;
+  }
+
 }
 
 /* <--- 2. FIXED: Closed out the media query correctly */
