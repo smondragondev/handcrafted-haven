@@ -43,7 +43,7 @@ export interface ProductDataCore{
     description: string;
     category: string;
     price: number;
-    imageUrl: string;
+    imageUrl?: string;
     contributorId: string;
 }
 
@@ -55,10 +55,14 @@ export interface ProductDataCreate extends ProductDataCore {
 export interface ProductDataUpdate extends ProductDataCore {
     id : string;
     name: string;
-    description: string;
-    category: string;
-    price: number;
-    imageUrl: string;
-    contributorId: string;
     updatedAt: string;
+}
+
+export interface ProductUpdateDB{
+    name?: string;
+    description?:string;
+    price?:number;
+    imageUrl?:string;
+    category?:string;
+    updatedAt?:string;
 }

@@ -1,6 +1,6 @@
 import { MongoClient, ObjectId } from "mongodb";
 import { attachDatabasePool } from "@vercel/functions";
-import { ProductDataCreate, ProductDataUpdate } from "./schemas";
+import { ProductDataCreate, ProductDataUpdate, ProductUpdateDB } from "./schemas";
 
 const uri = process.env.MONGODB_URI || "";
 if (!uri) throw new Error("Missing MONGODB_URI environment variable");
@@ -52,16 +52,28 @@ const createProductDB = async (data: ProductDataCreate) => {
 const editProductDB = async (data: ProductDataUpdate) => {
     const db = client.db("handcraftedhavendb");
     const products = db.collection("products");
-    const result = await products.updateOne({ _id: new ObjectId(data.id) }, {
+
+    let dataToUpdate: ProductUpdateDB = {
         name: data.name,
         description: data.description,
         price: data.price,
-        imageUrl: data.imageUrl,
         category: data.category,
         updatedAt: data.updatedAt,
-    });
+    }
+    if (data.imageUrl) {
+        dataToUpdate = { ...dataToUpdate, imageUrl: data.imageUrl }
+    }
+    const result = await products.updateOne(
+        { _id: new ObjectId(data.id) }, { $set: dataToUpdate });
     return result.upsertedId?.toString();
 }
 
+const deleteProductDB = async (id: string) => {
+    const db = client.db("handcraftedhavendb");
+    const products = db.collection("products");
+    const result = await products.deleteOne({_id: new ObjectId(id)});
+    return result.deletedCount;
+}
 
-export { GetAllProducts, createProductDB, editProductDB,  GetProductById, GetCategories }
+
+export { GetAllProducts, createProductDB, editProductDB, GetProductById, GetCategories, deleteProductDB }

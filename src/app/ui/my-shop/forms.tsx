@@ -5,6 +5,7 @@ import styles from "./myshop.module.css";
 import { State } from "@/app/lib/schemas";
 import { createProduct, editProduct } from "@/app/lib/actions";
 import { XCircleIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export function FormProduct({
   product,
@@ -16,7 +17,9 @@ export function FormProduct({
   type: "edit" | "create";
 }) {
   const [hasNewCategory, setHasNewCategory] = useState(false);
-  const [hasFile, setHasFile] = useState(product?.values?.imageUrl ? true : false);
+  const [hasFile, setHasFile] = useState(
+    product?.values?.imageUrl ? true : false,
+  );
   const [category, setCategory] = useState("");
   const initialState: State = product ?? {
     message: null,
@@ -39,7 +42,9 @@ export function FormProduct({
 
   const replaceFile = () => {
     setHasFile(false);
-  }
+  };
+
+  const imageName = initialState.values?.imageUrl?.split("/products/")[1];
 
   return (
     <form action={submitWithCategory} className={styles.form}>
@@ -127,7 +132,7 @@ export function FormProduct({
               ))}
           </div>
         </div>
-        { hasFile ? (
+        {hasFile ? (
           <div className={styles["replace-file"]}>
             <button type="button" onClick={replaceFile}>
               <span className={styles["circle-icon"]}>
@@ -135,7 +140,10 @@ export function FormProduct({
               </span>
               <span>Replace</span>
             </button>
-            <span>Archivo cargado: {initialState.values?.imageUrl}</span>
+            <span>
+              Archivo cargado:
+              <a href={initialState.values?.imageUrl} target="_blank">{imageName}</a>
+            </span>
           </div>
         ) : (
           <div className={styles["input-field"]}>
@@ -150,9 +158,12 @@ export function FormProduct({
           id="contributorId"
           value={contributorId}
         />
-        <button type="submit" aria-disabled={isPending}>
-          {type === "create" ? "Create product" : "Edit product"}
-        </button>
+        <div className={styles["form-buttons"]}>
+          <button type="submit" aria-disabled={isPending}>
+            {type === "create" ? "Create product" : "Edit product"}
+          </button>
+          <Link className={styles["cancel-button"]}  href="/my-shop">Cancel</Link>
+        </div>
       </div>
     </form>
   );

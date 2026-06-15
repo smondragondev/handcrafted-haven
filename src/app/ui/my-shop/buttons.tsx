@@ -1,6 +1,7 @@
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import styles from "./myshop.module.css";
+import { deleteProduct } from "@/app/lib/actions";
 
 export function AddProduct() {
   return (
@@ -29,9 +30,10 @@ export function EditProduct({id}:{id:string}) {
     )
 }
 
-export function DeleteProduct() {
+export function DeleteProduct({id, imageUrl}: {id:string, imageUrl:string}) {
+    const deleteProducWithId = deleteProduct.bind(null, id, imageUrl);
     return (
-        <form action="">
+        <form action={deleteProducWithId}>
             <button className={styles["delete-button"]}>
                 <TrashIcon className={styles["icon-button"]}></TrashIcon>
             </button>

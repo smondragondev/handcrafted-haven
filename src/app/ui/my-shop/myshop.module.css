@@ -142,6 +142,7 @@
     font-size: x-large;
     border: 1px solid;
     border-radius: 5px;
+    width: 100%;
 }
 
 .input-container button[type="submit"]:hover {
@@ -189,7 +190,7 @@
     margin-top: 0;
 }
 
-.replace-file button{
+.replace-file button {
     background-color: var(--accentTwo);
     color: white;
     border: none;
@@ -208,9 +209,41 @@
     color: var(--text-primary);
 }
 
-.circle-icon{
+.circle-icon {
     width: 18px;
     height: 18px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-buttons{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cancel-button{
+    display: block;
+    text-decoration: none;
+    background-color: var(--background);
+    padding: 10px 20px;
+    font-size: x-large;
+    border: 1px solid;
+    border-radius: 5px;
+    color: var(--text-primary);
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cancel-button:hover{
+    background-color: var(--accentTwo);
+    color: #fff;
 }
 
 @media (min-width: 600px) {
@@ -225,7 +258,6 @@
         border: 1px solid;
         border-collapse: collapse;
         width: fit-content;
-        margin-bottom: 20px;
         border-color: #448061;
     }
 
@@ -233,6 +265,13 @@
         display: flex;
         justify-content: center;
         padding: 50px 0px;
+        padding-bottom: 20px;
+    }
+
+    .main-table th {
+        background-color: var(--accentOne);
+        padding: 5px 50px;
+        border: 1px solid #448061;
     }
 
     .main-table td {
@@ -257,8 +296,12 @@
         width: 96.5%;
     }
 
-    .input-container button[type="submit"] {
-        width: 96.5%;
+    .main-buttons {
+        margin-bottom: 50px;
+    }
+
+    .header{
+        padding-right: 40px;
     }
 
 }

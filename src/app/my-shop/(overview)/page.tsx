@@ -9,19 +9,30 @@ import styles from "../../ui/my-shop/myshop.module.css";
 import { GetAllProducts } from "@/app/lib/mongodb";
 import { ProductImage } from "@/app/ui/my-shop/productImage";
 
+
 export const metadata: Metadata = {
   title: "My Shop",
 };
 
 export default async function MyShop() {
   const products = await GetAllProducts();
-  console.log("Products:", products);
 
   return (
     <>
-      <h1>My Shop</h1>
+      <div className={styles["header"]}>
+        <h1>My Shop</h1>
+        <AddProduct></AddProduct>
+      </div>
       <div className={styles["table-container"]}>
         <table className={styles["main-table"]}>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Descriptions</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
           <tbody>
             {products.map((product) => (
               <tr key={product._id.toString()}>
@@ -33,14 +44,17 @@ export default async function MyShop() {
                 <td>
                   <div className={styles["main-buttons"]}>
                     <EditProduct id={product._id.toString()}></EditProduct>
-                    <DeleteProduct></DeleteProduct>
+                    <DeleteProduct
+                      id={product._id.toString()}
+                      imageUrl={product.imageUrl}
+                    ></DeleteProduct>
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        </div>
+      </div>
       <ul className={styles["card-container"]}>
         {products.map((product) => (
           <li className={styles["product-card"]} key={product._id.toString()}>
@@ -54,7 +68,10 @@ export default async function MyShop() {
             </div>
             <div className={styles["product-button"]}>
               <EditProduct id={product._id.toString()}></EditProduct>
-              <DeleteProduct></DeleteProduct>
+              <DeleteProduct
+                id={product._id.toString()}
+                imageUrl={product.imageUrl}
+              ></DeleteProduct>
             </div>
           </li>
         ))}

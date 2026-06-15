@@ -4,14 +4,13 @@ import { z } from 'zod';
 import { revalidatePath } from 'next/cache'; //Clean the cache to trigger a new request to the server
 import { redirect } from 'next/navigation';
 import { CreateProduct, ProductDataCreate, ProductDataUpdate, State } from './schemas';
-import { put } from '@vercel/blob';
-import { createProductDB, editProductDB } from './mongodb';
+import { put, del } from '@vercel/blob';
+import { createProductDB, deleteProductDB, editProductDB } from './mongodb';
 
 
 export async function createProduct(prevState: State, formData: FormData): Promise<State> {
 
     const image = formData.get('image');
-    console.log("Cform : ", formData);
     let blob;
     if ((image instanceof File) && image.size > 0) {
         blob = await put(
@@ -83,27 +82,27 @@ export async function createProduct(prevState: State, formData: FormData): Promi
 
 export async function editProduct(id: string, prevState: State, formData: FormData): Promise<State> {
 
-    const image = formData.get('image');
-    console.log("Cform : ", formData);
+    let hasNewImage = false;
     let blob;
+    const image = formData.get('image');
+
     if ((image instanceof File) && image.size > 0) {
         blob = await put(
             'products/' + Date.now() + '-' + image.name,
             image,
             { access: 'public' }
         );
+        hasNewImage = true;
     }
-
 
     const formCategory = formData.get('category') === 'new-category'
         ? formData.get('new-category') : formData.get('category');
-    console.log("form category", formCategory)
+
     const validatedFields = CreateProduct.safeParse({
         name: formData.get('name'),
         description: formData.get("description"),
         category: formCategory,
         price: formData.get('price'),
-        // TODO REVIEW THIS BECAUSE the imageUrl is "" when is not replaced by the button Replace
         imageUrl: blob?.url ?? "",
         contributorId: formData.get("contributorId") ?? "",
     });
@@ -127,29 +126,52 @@ export async function editProduct(id: string, prevState: State, formData: FormDa
     const date = new Date().toISOString().split('T')[0];
 
     try {
-        const data: ProductDataUpdate = {
+        let data: ProductDataUpdate = {
             id,
             name,
             description,
             category,
             price,
-            imageUrl,
             updatedAt: date,
             contributorId,
+        };
+        if (imageUrl !== "") {
+            data = { ...data, imageUrl };
         }
-        console.log("Product data", data)
+
         await editProductDB(data);
-        // return {
-        //     id,
-        //     message: 'New Product Created'
-        // }
+
+        if (hasNewImage) {
+            const oldImageUrl = prevState.values?.imageUrl;
+            if (oldImageUrl) {
+                // Delete image from blob
+                await del(oldImageUrl);
+            }
+        }
 
     } catch (error) {
-        // We'll also log the error to the console for now
         console.error(error);
         return {
-            message: 'Database Error: Failed to Create Product.',
+            message: 'Database Error: Failed to Edit Product.',
         };
+    }
+
+    revalidatePath('/my-shop');
+    redirect('/my-shop');
+}
+
+export async function deleteProduct(id: string, imageUrl?: string): Promise<void> {
+
+    try {
+        await deleteProductDB(id);
+
+        if (imageUrl) {
+            await del(imageUrl);
+        }
+
+    } catch (error) {
+        console.error(error);
+        throw new Error('Database Error: Failed to Delete Product.',)
     }
 
     revalidatePath('/my-shop');
