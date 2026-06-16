@@ -22,3 +22,25 @@ export interface ProductData {
   contributorId: string;
   createdAt: string;
 }
+
+export interface CartItem extends ProductData {
+  quantity: number;
+}
+
+export interface OrderDoc {
+  orderNumber: string;
+  items: CartItem[];
+  subtotal: number;
+  shipping: number;
+  total: number;
+  createdAt: string;
+}
+
+export interface Review {
+  _id?: string;
+  productId: string;
+  userName: string;
+  rating: number;
+  comment: string;
+  createdAt: string;
+}

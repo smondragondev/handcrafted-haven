@@ -2,6 +2,7 @@ import { MongoClient, ObjectId } from "mongodb";
 import { attachDatabasePool } from "@vercel/functions";
 import type { ProductDoc } from "@/app/ui/types";
 import { ProductDataCreate, ProductDataUpdate, ProductUpdateDB } from "./schemas";
+import type { OrderDoc } from "@/app/ui/types";
 
 const uri = process.env.MONGODB_URI || "";
 if (!uri) throw new Error("Missing MONGODB_URI environment variable");
@@ -72,9 +73,37 @@ const editProductDB = async (data: ProductDataUpdate) => {
 const deleteProductDB = async (id: string) => {
     const db = client.db("handcraftedhavendb");
     const products = db.collection("products");
-    const result = await products.deleteOne({_id: new ObjectId(id)});
+    const result = await products.deleteOne({ _id: new ObjectId(id) });
     return result.deletedCount;
 }
 
+const createOrderDB = async (order: OrderDoc) => {
 
-export { GetAllProducts, createProductDB, editProductDB, GetProductById, GetCategories, deleteProductDB }
+    const db = client.db("handcraftedhavendb");
+    const orders = db.collection<OrderDoc>("orders");
+    const result = await orders.insertOne(order);
+
+    return result.insertedId.toString();
+}
+
+const GetReviewsByProductId = async (productId: string) => {
+
+    const db = client.db("handcraftedhavendb");
+    const reviews = db.collection("reviews");
+    const results = await reviews.find({
+        productId
+    }).toArray();
+
+    return results.map(review => ({
+
+        _id: review._id.toString(),
+        productId: review.productId,
+        userName: review.userName,
+        rating: review.rating,
+        comment: review.comment,
+        createdAt: review.createdAt?.toISOString()
+    }));
+}
+
+
+export { GetAllProducts, createProductDB, editProductDB, GetProductById, GetCategories, deleteProductDB, createOrderDB, GetReviewsByProductId }

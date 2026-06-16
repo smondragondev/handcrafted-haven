@@ -2,51 +2,42 @@
 
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import type { CartItem } from "@/app/ui/types";
 
 export default function ConfirmationPage() {
 
-    const user = {
-        name: "John Smith",
-        email: "johnsmith@email.com"
-    };
+    const [order, setOrder] = useState<any>(null);
 
-    const order = {
-        orderNumber: "ORD-12345",
-        date: "June 10, 2026",
-        items: [
-            {
-                id: 1,
-                name: "Handmade Vase",
-                price: 25,
-                quantity: 1
-            },
-            {
-                id: 2,
-                name: "Woven Basket",
-                price: 15,
-                quantity: 2
-            }
-        ]
-    };
+    useEffect(() => {
+
+        const storedOrder =
+            localStorage.getItem("lastOrder");
+
+        if (!storedOrder) return;
+
+        setOrder(JSON.parse(storedOrder));
+
+    }, []);
 
     const router = useRouter();
     const handleContinueShopping = () => {
         router.push("/");
     };
 
-    const subtotal = order.items.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-    );
-
-    const shipping = 5;
-    const total = subtotal + shipping;
+    if (!order) {
+        return (
+            <div className={styles.loading}>
+                👾 Loading order...
+            </div>
+        );
+    }
 
     return (
         <div className={styles.confirmationCard}>
 
             <h1 className={styles.successTitle}>
-                ✅ Order Confirmed!
+                👾 Order Confirmed!
             </h1>
 
             <p className={styles.successMessage}>
@@ -68,24 +59,10 @@ export default function ConfirmationPage() {
 
             <div className={styles.section}>
                 <h2>
-                    Customer Information
-                </h2>
-                <p>
-                    {user.name}
-                </p>
-
-                <p>
-                    {user.email}
-                </p>
-
-            </div>
-
-            <div className={styles.section}>
-                <h2>
                     Order Summary
                 </h2>
-                {order.items.map((item) => (
-                    <div key={item.id} className={styles.orderItem} >
+                {order.items.map((item: CartItem) => (
+                    <div key={item._id} className={styles.orderItem} >
 
                         <span>{item.name}</span>
 
@@ -103,7 +80,7 @@ export default function ConfirmationPage() {
 
                     <span>Subtotal</span>
 
-                    <span> ${subtotal.toFixed(2)} </span>
+                    <span>${order.subtotal.toFixed(2)}</span>
 
                 </div>
 
@@ -111,7 +88,7 @@ export default function ConfirmationPage() {
 
                     <span>Shipping</span>
 
-                    <span> ${shipping.toFixed(2)} </span>
+                    <span>${order.shipping.toFixed(2)}</span>
 
                 </div>
 
@@ -119,7 +96,7 @@ export default function ConfirmationPage() {
 
                     <span>Total</span>
 
-                    <span> ${total.toFixed(2)} </span>
+                    <span>${order.total.toFixed(2)}</span>
 
                 </div>
             </div>

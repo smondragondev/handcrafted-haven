@@ -1,7 +1,6 @@
 /*Global checkout*/
 
 .page {
-    background-color: #FAF2E0;
     color: black;
     min-height: 100vh;
     padding: 2rem;
@@ -13,7 +12,8 @@
     margin-bottom: 2rem;
 }
 
-/*Products section*/
+/*====================PRODUCTS SECTION==================*/
+
 .checkoutContainer {
     display: flex;
     gap: 2rem;
@@ -29,13 +29,13 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #FFC5D3;
 }
 
 .productImage {
     width: 70px;
     height: 70px;
-    background-color: #d9d9d9;
+    border-radius: 10px;
 }
 
 .productInfo {
@@ -92,7 +92,7 @@
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: bold;
-    color: #888;
+    color: #000000;
 }
 
 .removeButton:hover {
@@ -103,7 +103,7 @@
 
 .summarySection {
     flex: 1;
-    border: 1px solid #ddd;
+    border: 2px solid #FFC5D3;
     border-radius: 8px;
     padding: 1.5rem;
 }
@@ -130,4 +130,87 @@
     color: white;
     font-size: 1.4rem;
     cursor: pointer;
+}
+
+/*============================ EMPTY CART =============================*/
+
+.emptyCart {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.emptyCart h1 {
+    color: #448061;
+    font-size: 2.5rem;
+}
+
+.emptyCart p {
+    max-width: 500px;
+    color: #555;
+}
+
+.shopButton {
+    background-color: #448061;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.shopButton:hover {
+    transform: scale(1.05);
+}
+
+/*============================ MOBILE =============================*/
+
+@media (max-width: 768px) {
+
+    .page {
+        padding: 1rem;
+    }
+
+    .page h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .checkoutContainer {
+        flex-direction: column;
+    }
+
+    .productsSection {
+        width: 100%;
+    }
+
+    .summarySection {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .productCard {
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .productInfo {
+        flex-basis: 100%;
+        margin-left: 0;
+    }
+
+    .price {
+        margin-right: 0;
+        text-align: left;
+    }
+
+    .summarySection h2 {
+        font-size: 2rem;
+    }
 }
