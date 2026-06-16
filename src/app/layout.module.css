@@ -155,3 +155,55 @@
         display: none !important;
     }
 }
+
+/* ==========================================================================
+   MOBILE DROPDOWN PANEL 
+   ========================================================================== */
+.mobileDropdown {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    /* 🔥 Changed from absolute to fixed */
+    top: 70px;
+    /* Spaced right below the mobile header */
+    left: 0;
+    width: 100vw;
+    /* Forces it to span the full viewport width */
+    height: auto;
+    background-color: #FAF8F5;
+    border-bottom: 2px solid #D2FFC4;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    /* Slightly stronger shadow */
+    z-index: 99999;
+    /* 🔥 Higher z-index to pop over all text elements */
+    padding: 0.5rem 0;
+    box-sizing: border-box;
+}
+
+.mobileDropdown a {
+    display: block;
+    padding: 1.2rem 2rem;
+    text-decoration: none;
+    color: #448061;
+    /* Matches your primary green font color */
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #eae6e1;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobileDropdown a:last-child {
+    border-bottom: none;
+}
+
+.mobileDropdown a:hover {
+    background-color: #f3efe9;
+    color: #1b4332;
+}
+
+/* Ensure the dropdown panel disappears entirely on desktop layout viewports */
+@media (min-width: 769px) {
+    .mobileDropdown {
+        display: none !important;
+    }
+}
