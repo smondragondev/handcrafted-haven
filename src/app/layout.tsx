@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import './globals.css';
 import styles from './layout.module.css'; // Importing your CSS module
@@ -6,6 +5,7 @@ import { openSans } from "./ui/fonts";
 import Link from "next/link";
 import pageStyles from './page.module.css'
 import Image from 'next/image'
+import MobileMenu from "./components/MobileMenu";
 
 export const metadata: Metadata = {
   title: "Handcrafted haven app",
@@ -21,22 +21,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${openSans.className}`} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
 
-
-
         {/* 🌟 THE NAVIGATION BAR */}
         <nav className={styles.navbar}>
 
-          {/* 🍔 Left Corner: Mobile Hamburger Button Menu */}
-          <button className={styles.hamburgerBtn} aria-label="Open Navigation Menu">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '28px', height: '28px' }}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
+          {/* 🍔 Dynamic & Interactive Mobile Hamburger Menu Dropdown */}
+          <MobileMenu />
 
           {/* Center: Brand Crest & Title */}
           <div className={styles.logoContainer}>
             <Image
-              src="/handcrafted.jpg" // Using your exact asset path from the file tree!
+              src="/handcrafted.jpg" 
               alt="Handcrafted Haven Logo"
               className={styles.logoImage}
               height={200}
@@ -48,8 +42,8 @@ export default function RootLayout({
           <ul className={styles.navLinks}>
             <li><Link href="/">Home</Link></li>
             <li><Link href="/products">Products</Link></li>
-            <li><a href="/categories">Categories</a></li>
-            <li><a href="/about-us">About Us</a></li>
+            <li><Link href="/categories">Categories</Link></li>
+            <li><Link href="/about-us">About Us</Link></li>
           </ul>
 
           {/* Right: Shopping Cart & Profile Icons */}
@@ -61,7 +55,7 @@ export default function RootLayout({
               </svg>
             </Link>
 
-            {/* 👤 Profile / Login Link (Now clickable shortcut to your new route!) */}
+            {/* 👤 Profile / Login Link */}
             <Link href="/profile" className={styles.iconBtn} aria-label="User Account">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '28px', height: '28px' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
