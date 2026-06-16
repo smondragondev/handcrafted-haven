@@ -53,6 +53,16 @@
     color: #1b4332;
 }
 
+.navLink {
+    color: #448061;
+    text-decoration: none;
+}
+
+.active {
+    border-bottom: 2px solid #448061;
+    font-weight: bold;
+}
+
 /* --- RIGHT SECTION: UTILITY ICONS --- */
 .navUtilities {
     display: flex;

@@ -6,6 +6,7 @@ import Link from "next/link";
 import pageStyles from './page.module.css'
 import Image from 'next/image'
 import MobileMenu from "./components/MobileMenu";
+import NavMenu from "./components/Navigation";
 
 export const metadata: Metadata = {
   title: "Handcrafted haven app",
@@ -17,6 +18,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  
   return (
     <html lang="en">
       <body className={`${openSans.className}`} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', margin: 0 }}>
@@ -38,14 +40,7 @@ export default function RootLayout({
             />
           </div>
 
-          {/* Middle: Centered Navigation Links (Hidden automatically on Mobile) */}
-          <ul className={styles.navLinks}>
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/products">Products</Link></li>
-            <li><Link href="/my-shop">My Shop</Link></li>
-            <li><Link href="/about-us">About Us</Link></li>
-          </ul>
-
+          <NavMenu />
           {/* Right: Shopping Cart & Profile Icons */}
           <div className={styles.navUtilities}>
             {/* Shopping Cart Logo */}
