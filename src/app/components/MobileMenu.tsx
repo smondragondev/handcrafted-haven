@@ -49,7 +49,7 @@ export default function MobileMenu() {
         >
           <Link href="/" onClick={() => setIsOpen(false)} style={{ padding: '15px 30px', color: '#448061', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>Home</Link>
           <Link href="/products" onClick={() => setIsOpen(false)} style={{ padding: '15px 30px', color: '#448061', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>Products</Link>
-          <Link href="/categories" onClick={() => setIsOpen(false)} style={{ padding: '15px 30px', color: '#448061', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>Categories</Link>
+          <Link href="/my-shop" onClick={() => setIsOpen(false)} style={{ padding: '15px 30px', color: '#448061', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>My Shop</Link>
           <Link href="/about-us" onClick={() => setIsOpen(false)} style={{ padding: '15px 30px', color: '#448061', textDecoration: 'none', fontWeight: 600, fontSize: '1.2rem' }}>About Us</Link>
         </div>
       )}

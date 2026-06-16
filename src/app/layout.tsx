@@ -42,7 +42,7 @@ export default function RootLayout({
           <ul className={styles.navLinks}>
             <li><Link href="/">Home</Link></li>
             <li><Link href="/products">Products</Link></li>
-            <li><Link href="/categories">Categories</Link></li>
+            <li><Link href="/my-shop">My Shop</Link></li>
             <li><Link href="/about-us">About Us</Link></li>
           </ul>
 
