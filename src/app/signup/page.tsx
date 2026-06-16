@@ -11,6 +11,12 @@ export default function SignUp() {
       <h1>Sign Up</h1>
       <form action={action}>
         <div>
+          <label htmlFor="name">Name</label>
+          <input id="name" name="name" placeholder="Name" />
+        </div>
+        {state?.errors?.name && <p>{state.errors.name}</p>}
+
+        <div>
           <label htmlFor="email">Email</label>
           <input id="email" name="email" placeholder="Email" />
         </div>

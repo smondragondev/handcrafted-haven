@@ -114,9 +114,42 @@ const getUser = async () => {
     return products.find().toArray();
 }
 
+const createUser = async (data: {
+    name: string;
+    email: string;
+    password: string; 
+    bio?: string;
+    location?: string;
+    role?: string;
+}) => {
+    const db = client.db("handcraftedhavendb");
+    const users = db.collection("users");
+
+    // Don't allow duplicate accounts for the same email.
+    const existing = await users.findOne({ email: data.email });
+    if (existing) return null;
+
+    const result = await users.insertOne({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        bio: data.bio ?? "",
+        location: data.location ?? "",
+        role: data.role ?? "contributor",
+        createdAt: new Date(),
+    });
+    return result.insertedId.toString();
+}
+
+const getUserByEmail = async (email: string) => {
+    const db = client.db("handcraftedhavendb");
+    const users = db.collection("users");
+    return users.findOne({ email });
+}
 
 
 
 
 
-export { GetAllProducts, createProductDB, editProductDB, GetProductById, GetCategories, deleteProductDB, createOrderDB, GetReviewsByProductId }
+
+export { GetAllProducts, createProductDB, editProductDB, GetProductById, GetCategories, deleteProductDB, createOrderDB, GetReviewsByProductId, createUser, getUserByEmail }
