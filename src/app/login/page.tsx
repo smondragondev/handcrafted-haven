@@ -1,5 +1,4 @@
 import styles from "./login.module.css"
-import {GetAllProducts} from '@/app/lib/mongodb'
 
 export default async function Login(){
 
@@ -16,3 +15,4 @@ export default async function Login(){
         </div>
     )
 }
+

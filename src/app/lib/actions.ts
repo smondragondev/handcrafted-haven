@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { revalidatePath } from 'next/cache'; //Clean the cache to trigger a new request to the server
 import { redirect } from 'next/navigation';
 import { CreateProduct, ProductDataCreate, ProductDataUpdate, State } from './schemas';
-import { put, del } from '@vercel/blob';
+import { put, del } from 'vercel/blob';
 import { createProductDB, deleteProductDB, editProductDB } from './mongodb';
 
 

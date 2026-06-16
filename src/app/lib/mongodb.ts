@@ -103,7 +103,20 @@ const GetReviewsByProductId = async (productId: string) => {
         comment: review.comment,
         createdAt: review.createdAt?.toISOString()
     }));
+    
 }
+
+const getUser = async () => {
+
+    const db = client.db("handcraftedhavendb")
+    const products = db.collection<ProductDoc>("products")
+
+    return products.find().toArray();
+}
+
+
+
+
 
 
 export { GetAllProducts, createProductDB, editProductDB, GetProductById, GetCategories, deleteProductDB, createOrderDB, GetReviewsByProductId }

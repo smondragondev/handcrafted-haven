@@ -1,18 +1,39 @@
-import styles from "./signup.module.css"
+"use client";
+import styles from "./signup.module.css";
+import { signup } from "@/app/actions/auth";
+import { useActionState } from "react";
 
-export default function SignUp(){
-    return (
-        <div className={styles.body}>
-            <h1>Sign Up</h1>
-            <form className={styles.body_from}>
-                <label>Email</label>
-                <input type="email"/>
-                <label>Password</label>
-                <input type="password" required min={8}/>
-                <label>Confirm Password</label>
-                <input type="password" required/>
-                <input type="submit"  value={"Sign Up"}/>
-            </form>
+export default function SignUp() {
+  const [state, action, pending] = useActionState(signup, undefined);
+
+  return (
+    <div className={styles.body}>
+      <h1>Sign Up</h1>
+      <form action={action}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input id="email" name="email" placeholder="Email" />
         </div>
-    )
+        {state?.errors?.email && <p>{state.errors.email}</p>}
+
+        <div>
+          <label htmlFor="password">Password</label>
+          <input id="password" name="password" type="password" />
+        </div>
+        {state?.errors?.password && (
+          <div>
+            <p>Password must:</p>
+            <ul>
+              {state.errors.password.map((error) => (
+                <li key={error}>- {error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <button disabled={pending} type="submit">
+          Sign Up
+        </button>
+      </form>
+    </div>
+  );
 }
