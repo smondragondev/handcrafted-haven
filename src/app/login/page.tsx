@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link"; // 👈 1. Imported Next.js Link component
 import styles from "./login.module.css";
 
 export default function Login() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         const response = await fetch("/api/login", {
@@ -25,7 +27,6 @@ export default function Login() {
 
         if (response.ok) {
             localStorage.setItem("user", JSON.stringify(data.user));
-
             window.location.href = "/profile";
         }
     };
@@ -50,6 +51,21 @@ export default function Login() {
                     minLength={8}
                 />
                 <input type="submit" value={"Login"} />
+
+                
+                <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '0.9rem' }}>
+                    <span style={{ color: '#555' }}>Don't have an account? </span>
+                    <Link 
+                        href="/signup" 
+                        style={{ 
+                            color: '#448061', 
+                            textDecoration: 'underline', 
+                            fontWeight: 'bold' 
+                        }}
+                    >
+                        Sign Up
+                    </Link>
+                </div>
             </form>
         </div>
     );
