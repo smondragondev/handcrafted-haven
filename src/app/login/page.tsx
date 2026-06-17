@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./login.module.css";
+import Link from "next/link";
 
 export default function Login() {
     const router = useRouter();
@@ -50,7 +51,22 @@ export default function Login() {
                     minLength={8}
                 />
                 <input type="submit" value={"Login"} />
+                <div style={{ marginTop: '20px', textAlign: 'center', fontSize: '0.9rem' }}>
+                    <span style={{ color: '#555' }}>Don't have an account? </span>
+                    <Link
+                        href="/signup"
+                        style={{
+                            color: '#448061',
+                            textDecoration: 'underline',
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        Sign Up
+                    </Link>
+                </div>
+
             </form>
+            
         </div>
     );
 }
