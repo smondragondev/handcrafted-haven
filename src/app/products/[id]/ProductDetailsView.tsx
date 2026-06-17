@@ -3,12 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useCart } from "@/app/ui/useCart";
 
 export default function ProductDetailsView({ product, reviews }: any) {
     const [userName, setUserName] = useState("");
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
     const [hover, setHover] = useState(0);
+    const { addedToCart, toggleCart } = useCart(product.id, product);
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
@@ -70,7 +72,9 @@ export default function ProductDetailsView({ product, reviews }: any) {
 
                     <p className={styles.description}>{product.description}</p>
 
-                    <button className={styles.buyButton}>Add to Cart</button>
+                    <button onClick={toggleCart} className={styles.buyButton}>
+                        {addedToCart ? "Remove from Cart" : "Add to Cart"}
+                    </button>
                 </div>
             </div>
 

@@ -4,31 +4,10 @@ import type { ProductData } from "@/app/ui/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useCart } from "@/app/ui/useCart";
 
 export default function ProductCard({ product }: { product: ProductData }) {
-    const [addedToCart, setAddedToCart] = useState(false);
-
-    useEffect(() => {
-        const cart = localStorage.getItem("shoppingCart");
-        if (cart == null) return;
-        const cartObj = JSON.parse(cart);
-        setAddedToCart(cartObj.some((p: ProductData) => p._id === product._id));
-    }, [product._id]);
-
-    const toggleCart = () => {
-        const stored = localStorage.getItem("shoppingCart");
-        const cart = stored ? JSON.parse(stored) : [];
-
-        const exists = cart.some((p: ProductData) => p._id === product._id);
-
-        const updated = exists
-            ? cart.filter((p: ProductData) => p._id !== product._id)
-            : [...cart, product];
-
-        localStorage.setItem("shoppingCart", JSON.stringify(updated));
-        setAddedToCart(!exists);
-    };
-
+    const { addedToCart, toggleCart } = useCart(product._id, product);
     return (
         <div className={styles.productCard}>
             <Link href={`/products/${product._id}`} className={styles.cardLink}>
