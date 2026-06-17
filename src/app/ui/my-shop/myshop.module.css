@@ -35,7 +35,6 @@
     justify-content: center;
 }
 
-
 .main-table {
     display: none;
 }
@@ -82,14 +81,14 @@
 }
 
 .edit-button:hover {
-    background-color: #ADFFF5;
+    background-color: #adfff5;
 }
 
 .delete-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FFC5D3;
+    background-color: #ffc5d3;
     color: #000;
     border-radius: 5px;
     cursor: pointer;
@@ -100,7 +99,6 @@
 .delete-button:hover {
     background-color: #f498ae;
 }
-
 
 /* Form */
 .input-container {
@@ -133,7 +131,6 @@
     padding: 5px 5px;
     border: 1px solid var(--accentTwo);
     border-radius: 5px;
-
 }
 
 .input-container button[type="submit"] {
@@ -183,7 +180,6 @@
     font-size: 14px;
     color: red;
     margin-bottom: -14px;
-
 }
 
 .error p {
@@ -214,20 +210,20 @@
     height: 18px;
 }
 
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.form-buttons{
+.form-buttons {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 10px;
 }
 
-.cancel-button{
+.cancel-button {
     display: block;
     text-decoration: none;
     background-color: var(--background);
@@ -241,13 +237,12 @@
     box-sizing: border-box;
 }
 
-.cancel-button:hover{
+.cancel-button:hover {
     background-color: var(--accentTwo);
     color: #fff;
 }
 
 @media (min-width: 600px) {
-
     .main-container h1 {
         margin-left: 40px;
         margin-top: 10px;
@@ -296,12 +291,11 @@
         width: 96.5%;
     }
 
-    .header{
+    .header {
         padding-right: 40px;
     }
 
-    .primary-button{
+    .primary-button {
         margin-bottom: 50px;
     }
-
 }

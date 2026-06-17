@@ -33,7 +33,7 @@
 
 .category {
     display: inline-block;
-    background-color: #ADFFF5;
+    background-color: #adfff5;
     color: #448061;
     padding: 0.4rem 0.8rem;
     border-radius: 999px;
@@ -92,7 +92,7 @@
     flex-direction: column;
     gap: 1rem;
     background-color: white;
-    border: 2px solid #ADFFF5;
+    border: 2px solid #adfff5;
     border-radius: 20px;
     padding: 1.5rem;
     margin-bottom: 2rem;
@@ -102,8 +102,8 @@
 .reviewForm input,
 .reviewForm textarea {
     width: 100%;
-    padding: .5rem;
-    border: 1px solid #FFC5D3;
+    padding: 0.5rem;
+    border: 1px solid #ffc5d3;
     border-radius: 10px;
 }
 
@@ -144,7 +144,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
 
 .reviewUser {
@@ -153,9 +153,9 @@
 }
 
 .reviewStars {
-    color: #FFD700;
+    color: #ffd700;
     font-size: 1.2rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
 
 .reviewComment {
@@ -164,7 +164,6 @@
 }
 
 @media (max-width: 768px) {
-
     .productContainer {
         flex-direction: column;
     }
@@ -176,5 +175,4 @@
     .price {
         font-size: 1.7rem;
     }
-
 }

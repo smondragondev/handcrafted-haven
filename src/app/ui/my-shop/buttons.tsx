@@ -4,13 +4,15 @@ import styles from "./myshop.module.css";
 import { deleteProduct } from "@/app/lib/actions";
 
 export function AddProduct() {
-  return (
-    <Link href="/my-shop/product/create"
-          className={styles["primary-button"]}>
-      <span>Add Product</span>
-      <PlusIcon className={styles["icon"]}></PlusIcon>
-    </Link>
-  );
+    return (
+        <Link
+            href="/my-shop/product/create"
+            className={styles["primary-button"]}
+        >
+            <span>Add Product</span>
+            <PlusIcon className={styles["icon"]}></PlusIcon>
+        </Link>
+    );
 }
 
 export function AddCategory() {
@@ -19,18 +21,27 @@ export function AddCategory() {
             <span>Add Category</span>
             <PlusIcon className={styles["icon"]}></PlusIcon>
         </Link>
-    )
+    );
 }
 
-export function EditProduct({id}:{id:string}) {
+export function EditProduct({ id }: { id: string }) {
     return (
-        <Link href={`/my-shop/product/${id}/edit`} className={styles["edit-button"]}>
+        <Link
+            href={`/my-shop/product/${id}/edit`}
+            className={styles["edit-button"]}
+        >
             <PencilIcon className={styles["icon-button"]}></PencilIcon>
         </Link>
-    )
+    );
 }
 
-export function DeleteProduct({id, imageUrl}: {id:string, imageUrl:string}) {
+export function DeleteProduct({
+    id,
+    imageUrl,
+}: {
+    id: string;
+    imageUrl: string;
+}) {
     const deleteProducWithId = deleteProduct.bind(null, id, imageUrl);
     return (
         <form action={deleteProducWithId}>
@@ -38,5 +49,5 @@ export function DeleteProduct({id, imageUrl}: {id:string, imageUrl:string}) {
                 <TrashIcon className={styles["icon-button"]}></TrashIcon>
             </button>
         </form>
-    )
+    );
 }

@@ -1,9 +1,9 @@
 allowBuilds:
-  esbuild: true
-  sharp: true
-  unrs-resolver: true
+    esbuild: true
+    sharp: true
+    unrs-resolver: true
 minimumReleaseAgeExclude:
-  - '@vercel/backends@0.8.14'
-  - '@vercel/cervel@0.1.22'
-  - '@vercel/express@0.1.105'
-  - vercel@54.13.0
+    - "@vercel/backends@0.8.14"
+    - "@vercel/cervel@0.1.22"
+    - "@vercel/express@0.1.105"
+    - vercel@54.13.0

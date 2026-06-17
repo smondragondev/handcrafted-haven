@@ -29,7 +29,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 0;
-    border-bottom: 1px solid #FFC5D3;
+    border-bottom: 1px solid #ffc5d3;
 }
 
 .productImage {
@@ -44,7 +44,6 @@
 }
 
 .quantityBox {
-
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -52,7 +51,7 @@
     border-radius: 8px;
     padding: 0.25rem 0.5rem;
     width: fit-content;
-    background-color: #FFC5D3;
+    background-color: #ffc5d3;
 }
 
 .quantityButton {
@@ -103,7 +102,7 @@
 
 .summarySection {
     flex: 1;
-    border: 2px solid #FFC5D3;
+    border: 2px solid #ffc5d3;
     border-radius: 8px;
     padding: 1.5rem;
 }
@@ -117,8 +116,8 @@
 .summaryRow {
     display: flex;
     justify-content: space-between;
-    margin-bottom: .5rem;
-    font-size: 1.0rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
 .buyButton {
@@ -171,7 +170,6 @@
 /*============================ MOBILE =============================*/
 
 @media (max-width: 768px) {
-
     .page {
         padding: 1rem;
     }

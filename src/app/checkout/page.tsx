@@ -8,50 +8,35 @@ import { useEffect } from "react";
 import Image from "next/image";
 
 export default function CheckoutPage() {
-
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const router = useRouter();
 
     useEffect(() => {
-        const storedCart =
-            localStorage.getItem("shoppingCart");
+        const storedCart = localStorage.getItem("shoppingCart");
 
         if (!storedCart) return;
 
-        const products: ProductData[] =
-            JSON.parse(storedCart);
+        const products: ProductData[] = JSON.parse(storedCart);
 
-        const cartProducts: CartItem[] =
-            products.map(product => ({
-                ...product,
-                quantity: 1
-            }));
+        const cartProducts: CartItem[] = products.map((product) => ({
+            ...product,
+            quantity: 1,
+        }));
 
         setCartItems(cartProducts);
-
     }, []);
 
     //Cart actions
     const removeItem = (id: string) => {
-
-        const updated =
-            cartItems.filter(
-                item => item._id !== id
-            );
+        const updated = cartItems.filter((item) => item._id !== id);
 
         setCartItems(updated);
 
-        localStorage.setItem(
-            "shoppingCart",
-            JSON.stringify(updated)
-        );
+        localStorage.setItem("shoppingCart", JSON.stringify(updated));
     };
 
     const decreaseQuantity = (id: string) => {
-
-        const product = cartItems.find(
-            item => item._id === id
-        );
+        const product = cartItems.find((item) => item._id === id);
 
         if (!product) return;
 
@@ -61,32 +46,31 @@ export default function CheckoutPage() {
         }
 
         setCartItems(
-            cartItems.map(item =>
+            cartItems.map((item) =>
                 item._id === id
                     ? {
-                        ...item,
-                        quantity: item.quantity - 1
-                    }
-                    : item
-            )
+                          ...item,
+                          quantity: item.quantity - 1,
+                      }
+                    : item,
+            ),
         );
     };
 
     const increaseQuantity = (id: string) => {
         setCartItems(
-            cartItems.map(item =>
+            cartItems.map((item) =>
                 item._id === id
                     ? {
-                        ...item,
-                        quantity: item.quantity + 1
-                    }
-                    : item
-            )
+                          ...item,
+                          quantity: item.quantity + 1,
+                      }
+                    : item,
+            ),
         );
     };
 
     const handleBuy = async () => {
-
         const order = {
             orderNumber: `ORD-${Date.now()}`,
 
@@ -98,28 +82,21 @@ export default function CheckoutPage() {
             shipping,
             total,
 
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
         };
 
-        const response = await fetch(
-            "/api/orders",
-            {
-                method: "POST",
+        const response = await fetch("/api/orders", {
+            method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+            headers: {
+                "Content-Type": "application/json",
+            },
 
-                body: JSON.stringify(order)
-            }
-        );
+            body: JSON.stringify(order),
+        });
 
         if (response.ok) {
-
-            localStorage.setItem(
-                "lastOrder",
-                JSON.stringify(order)
-            );
+            localStorage.setItem("lastOrder", JSON.stringify(order));
 
             localStorage.removeItem("shoppingCart");
 
@@ -130,7 +107,7 @@ export default function CheckoutPage() {
     //Calculations
     const subtotal = cartItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
-        0
+        0,
     );
     const shipping = 5;
     const total = subtotal + shipping;
@@ -160,12 +137,9 @@ export default function CheckoutPage() {
             <h1>Cart</h1>
 
             <div className={styles.checkoutContainer}>
-
                 <section className={styles.productsSection}>
-
                     {cartItems.map((item) => (
                         <div key={item._id} className={styles.productCard}>
-
                             <Image
                                 src={item.imageUrl}
                                 alt={item.name}
@@ -186,7 +160,9 @@ export default function CheckoutPage() {
                                     -
                                 </button>
 
-                                <span className={styles.quantityNumber}>{item.quantity}</span>
+                                <span className={styles.quantityNumber}>
+                                    {item.quantity}
+                                </span>
 
                                 <button
                                     className={styles.quantityButton}
@@ -206,7 +182,6 @@ export default function CheckoutPage() {
                             >
                                 ✕
                             </button>
-
                         </div>
                     ))}
                 </section>
@@ -234,8 +209,7 @@ export default function CheckoutPage() {
                         Buy
                     </button>
                 </aside>
-
             </div>
         </div>
-    )
+    );
 }
