@@ -5,11 +5,11 @@ import styles from "../page.module.css"; // Importing your CSS modules
 import { GetAllProducts } from "@/app/lib/mongodb";
 
 interface Product {
-    id: string;
-    title: string;
-    price: number;
-    imageSrc: string;
-    category: string;
+  _id: any;      
+  name: string;     
+  price: number;
+  imageUrl: string; 
+  category: string;
 }
 
 export default async function Recommendations() {
@@ -25,7 +25,7 @@ export default async function Recommendations() {
 
             {/* 4-Column Grid */}
             <div className={styles.recommendationsGrid}>
-                {products.slice(0, 4).map((product) => (
+                {products.slice(0, 4).map((product: Product) => (
                     <div
                         key={product._id.toString()}
                         className={styles.productCard}
