@@ -5,68 +5,73 @@ import Recommendations from "./components/recommendations";
 import Link from "next/link";
 
 export default function Home() {
-  const features = [
-    { title: "Unique Handmade Finds", image: "/palette.svg" },
-    { title: "Support Small Creators", image: "/support-small-creators.svg" },
-    { title: "Quality You Can Feel", image: "/award.svg" },
-  ];
+    const features = [
+        { title: "Unique Handmade Finds", image: "/palette.svg" },
+        {
+            title: "Support Small Creators",
+            image: "/support-small-creators.svg",
+        },
+        { title: "Quality You Can Feel", image: "/award.svg" },
+    ];
 
-  return (
-    <div className={styles.page}>
-      {/* Header */}
-      <main className={styles.main}>
-        {/* Hero Section */}
-        <section className={styles.hero}>
-          <div className={styles["hero-description"]}>
-            <h1>Handcrafted Haven</h1>
-            <h2>The marketplace for handmade excellence</h2>
-            <p>
-              Discover unique, handmade treasures from talented artisans around
-              the world. Support creators and find one-of-a-kind pieces for your
-              home.
-            </p>
-            <div className={styles.ctas}>
-              <Link href="/products" className={styles.primary}>Shop Now</Link>
-            </div>
-          </div>
-          <Image
-            src="/hero-image.webp"
-            alt="Handcrafted objects"
-            width={800}
-            height={510}
-            className={styles["hero-image"]}
-            priority
-          />
-          <Image
-            src="/hero-image-mobile.webp"
-            width={280}
-            height={178.5}
-            className={styles["hero-mobile-image"]}
-            alt="Handcrafted objects"
-          />
-        </section>
+    return (
+        <div className={styles.page}>
+            {/* Header */}
+            <main className={styles.main}>
+                {/* Hero Section */}
+                <section className={styles.hero}>
+                    <div className={styles["hero-description"]}>
+                        <h1>Handcrafted Haven</h1>
+                        <h2>The marketplace for handmade excellence</h2>
+                        <p>
+                            Discover unique, handmade treasures from talented
+                            artisans around the world. Support creators and find
+                            one-of-a-kind pieces for your home.
+                        </p>
+                        <div className={styles.ctas}>
+                            <Link href="/products" className={styles.primary}>
+                                Shop Now
+                            </Link>
+                        </div>
+                    </div>
+                    <Image
+                        src="/hero-image.webp"
+                        alt="Handcrafted objects"
+                        width={800}
+                        height={510}
+                        className={styles["hero-image"]}
+                        priority
+                    />
+                    <Image
+                        src="/hero-image-mobile.webp"
+                        width={280}
+                        height={178.5}
+                        className={styles["hero-mobile-image"]}
+                        alt="Handcrafted objects"
+                    />
+                </section>
 
-        {/* Features */}
-        <section className={styles.features}>
-          <h1>Features</h1>
-          <ul className={styles["features-container"]}>
-            {features.map((feature, index) => (
-              <li key={index}>
-                <Image
-                  src={feature.image}
-                  alt={feature.title}
-                  height={100}
-                  width={100}
-                  priority
-                />
-                <h2>{feature.title}</h2>
-              </li>
-            ))}
-          </ul>
-        </section>
+                {/* Features */}
+                <section className={styles.features}>
+                    <h1>Features</h1>
+                    <ul className={styles["features-container"]}>
+                        {features.map((feature, index) => (
+                            <li key={index}>
+                                <Image
+                                    src={feature.image}
+                                    alt={feature.title}
+                                    height={100}
+                                    width={100}
+                                    priority
+                                />
+                                <h2>{feature.title}</h2>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
 
-        <Recommendations />
-      </main>
-    </div>
-  );
+                <Recommendations />
+            </main>
+        </div>
+    );
 }
